@@ -143,7 +143,7 @@ int main() {
 	// ostatnie s³owo Cat mo¿e zawieraæ w sobie jak¹œ cyfrê lub ró¿niæ siê w inny sposób
 
 
-	letTheCatsOut(animals);
+	 letTheCatsOut(animals);
 	//
 	// dla wszystkich obiektów klasy Cat powinno wypisaæ zdanie "humans are my servants because I am a Cat"
 	// dla obiektów klas jej pochodnych (Tiger, Nyan) powinno wypisaæ s³owo zdefiniowane w wirtualnej metodzie speak
