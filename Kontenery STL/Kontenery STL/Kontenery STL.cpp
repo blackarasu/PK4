@@ -107,10 +107,10 @@ int main()
 	}
 	// ZADANIE 3 Podane poni¿ej zdanie rozbito na pojedyncze s³owa i wstawione je do vectora stringów slowa, uzyj tego vectora do stworzenia kontenerow set i mapa.Przy ich u¿yciu policz ile jest unikalnych s³ów, i ile razy ka¿de s³owo siê powtarza.
 	char tekst[] = "ja ja ja sie sie bardzo jakam i i i policz ile ile ile slow slow powiedzialem";
+	cout << tekst << endl;
 	vector<string> slowa;
 	podziel(tekst, slowa);
 	set<string> s1;
-	set<string>::iterator it1;
 	map<string, int>s2;
 	map<string, int>::iterator it2;
 	for (size_t i = 0; i < slowa.size(); ++i)
