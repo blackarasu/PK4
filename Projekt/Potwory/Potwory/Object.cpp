@@ -11,38 +11,53 @@ Object::~Object()
 {
 }
 
-Object::Object(float x, float y)
+Object::Object(const float &x, const float &y)
 {
-	setX(x);
-	setY(y);
+	SetPosition(x, y);
 }
 
-Object::Object(float x, float y, std::string ID):Object(x, y)
+Object::Object(const float &x, const float &y, const std::string &ID):Object(x, y)
 {
-	setID(ID);
+	SetID(ID);
 }
 
-Object::Object(float x, float y, std::string ID, std::string fileName):Object(x,y,ID)
+Object::Object(const float &x, const float &y,const std::string &ID, const std::string &fileName):Object(x,y,ID)
 {
-	setTexture(fileName);
+	SetTexture(fileName);
 }
 
-void Object::setX(float x)
+void Object::SetX(const float &x)
 {
 	this->x = x;
 }
 
-void Object::setY(float y)
+void Object::SetY(const float &y)
 {
 	this->y = y;
 }
 
-void Object::setID(std::string ID)
+void Object::SetPosition(const float &x, const float &y)
+{
+	SetX(x);
+	SetY(y);
+}
+
+void Object::SetID(const std::string &ID)
 {
 	this->ID = ID;
 }
 
-void Object::setTexture(std::string fileName)
+void Object::SetPositionToActualSprite()
+{
+	this->actualSprite.setPosition(this->x, this->y);
+}
+
+void Object::SetPositionToActualSprite(const float &x, const float &y)
+{
+	this->actualSprite.setPosition(x, y);
+}
+
+void Object::SetTexture(const std::string &fileName)
 {
 	if (!this->texture.loadFromFile(fileName))
 	{
@@ -51,29 +66,34 @@ void Object::setTexture(std::string fileName)
 	}
 }
 
-sf::Sprite Object::textureToSprite(sf::Texture *texture)
+sf::Sprite Object::TextureToSprite(sf::Texture *texture) //use it for vector of sprites
 {
 	sf::Sprite sprite;
 	sprite.setTexture(*texture);
 	return sprite;
 }
 
-void Object::setSprite()
+void Object::SetSprites()
 {
-	this->sprites.push_back(textureToSprite(&texture));
+	this->actualSprite.setTexture(this->texture);
 }
 
-float Object::getX()
+float Object::GetX()
 {
 	return this->x;
 }
 
-float Object::getY()
+float Object::GetY()
 {
 	return this->y;
 }
 
-std::string Object::getID()
+std::string Object::GetID()
 {
 	return this->ID;
+}
+
+void Object::DrawToWindow(sf::RenderWindow * window)
+{
+	window->draw(actualSprite);
 }
