@@ -7,6 +7,7 @@ class Object
 public:
 	Object();
 	~Object();
+	Object(float x, float y);
 	Object(float x, float y, std::string ID);
 	Object(float x, float y, std::string ID, std::string fileName);
 //sets

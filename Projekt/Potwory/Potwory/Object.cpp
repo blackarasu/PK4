@@ -11,10 +11,14 @@ Object::~Object()
 {
 }
 
-Object::Object(float x, float y, std::string ID)
+Object::Object(float x, float y)
 {
 	setX(x);
 	setY(y);
+}
+
+Object::Object(float x, float y, std::string ID):Object(x, y)
+{
 	setID(ID);
 }
 
