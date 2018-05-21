@@ -3,8 +3,8 @@
 
 Object::Object()
 {
-	this->x = 0;
-	this->y = 0;
+	this->mapPosition.x = 0;
+	this->mapPosition.y = 0;
 }
 
 Object::~Object()
@@ -28,12 +28,12 @@ Object::Object(const float &x, const float &y,const std::string &ID, const std::
 
 void Object::SetX(const float &x)
 {
-	this->x = x;
+	this->mapPosition.x = x;
 }
 
 void Object::SetY(const float &y)
 {
-	this->y = y;
+	this->mapPosition.y = y;
 }
 
 void Object::SetPosition(const float &x, const float &y)
@@ -80,12 +80,12 @@ void Object::SetSprites()
 
 float Object::GetX()
 {
-	return this->x;
+	return this->mapPosition.x;
 }
 
 float Object::GetY()
 {
-	return this->y;
+	return this->mapPosition.y;
 }
 
 std::string Object::GetID()
@@ -101,8 +101,8 @@ void Object::DrawToWindow(sf::RenderWindow * window)
 	maximumField.x = windowSize.x/actualSpritesRect.width;
 	maximumField.y = windowSize.y/actualSpritesRect.height;
 	sf::Vector2f actualPixel;
-	actualPixel.x = (this->x < maximumField.x && this->x >= 0.f)? actualSpritesRect.width * this->x : actualSpritesRect.width * (maximumField.x-1.f);
-	actualPixel.y = (this->y < maximumField.y && this->y >= 0.f)? actualSpritesRect.height * this->y : actualSpritesRect.height * (maximumField.y-1.f);
+	actualPixel.x = (this->mapPosition.x < maximumField.x && this->mapPosition.x >= 0.f)? actualSpritesRect.width * this->mapPosition.x : actualSpritesRect.width * (maximumField.x-1.f);
+	actualPixel.y = (this->mapPosition.y < maximumField.y && this->mapPosition.y >= 0.f)? actualSpritesRect.height * this->mapPosition.y : actualSpritesRect.height * (maximumField.y-1.f);
 	actualSprite.setPosition(actualPixel);
 	window->draw(actualSprite);
 }

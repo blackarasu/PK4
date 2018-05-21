@@ -27,7 +27,10 @@ public:
 	void DrawToWindow(sf::RenderWindow *window);
 private:
 //Fields
-	float x, y;
+	struct mapPosition
+	{
+		float x, y;
+	}mapPosition;
 	std::string ID;
 	sf::Texture texture;
 	sf::Sprite actualSprite;
