@@ -11,7 +11,7 @@ public:
 	Object(const float &x, const float &y);
 	Object(const float &x, const float &y, const std::string &ID);
 	Object(const float &x, const float &y, const std::string &ID, const std::string &fileName);
-//Sets
+//Setters
 	void SetPosition(const float &x,const float &y);//Set float x, y;
 	void SetID(const std::string &ID);//Set ID of an Object
 	void SetPositionToActualSprite();//Position x,y in class
@@ -19,7 +19,7 @@ public:
 	void SetTexture(const std::string &fileName);//Loading Texture from file
 	virtual sf::Sprite TextureToSprite(sf::Texture *texture);//Load texture to vector of sprite;
 	virtual void SetSprites();
-//Gets
+//Getters
 	float GetX();
 	float GetY();
 	std::string GetID();
@@ -32,6 +32,6 @@ private:
 	sf::Texture texture;
 	sf::Sprite actualSprite;
 //Methods
-	void SetX(const float &x); //Set float x
-	void SetY(const float &y); //Set float y
+	void SetX(const float &x); //Set mapPosition.x
+	void SetY(const float &y); //Set mapPosition.y
 };

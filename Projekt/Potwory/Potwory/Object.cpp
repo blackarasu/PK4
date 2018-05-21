@@ -49,7 +49,7 @@ void Object::SetID(const std::string &ID)
 
 void Object::SetPositionToActualSprite()
 {
-	this->actualSprite.setPosition(this->x, this->y);
+	this->actualSprite.setPosition(this->mapPosition.x, this->mapPosition.y);
 }
 
 void Object::SetPositionToActualSprite(const float &x, const float &y)
@@ -95,14 +95,14 @@ std::string Object::GetID()
 
 void Object::DrawToWindow(sf::RenderWindow * window)
 {
-	sf::IntRect actualSpritesRect = actualSprite.getTextureRect();
-	sf::Vector2u windowSize = window->getSize();
+	sf::IntRect actualSpritesRect = actualSprite.getTextureRect(); //getting Rectangle of actualSprite for calculating the maximumFieldOfMap
+	sf::Vector2u windowSize = window->getSize(); //getting size of window in pixels (x,y)
 	sf::Vector2u maximumField;
 	maximumField.x = windowSize.x/actualSpritesRect.width;
 	maximumField.y = windowSize.y/actualSpritesRect.height;
 	sf::Vector2f actualPixel;
-	actualPixel.x = (this->mapPosition.x < maximumField.x && this->mapPosition.x >= 0.f)? actualSpritesRect.width * this->mapPosition.x : actualSpritesRect.width * (maximumField.x-1.f);
-	actualPixel.y = (this->mapPosition.y < maximumField.y && this->mapPosition.y >= 0.f)? actualSpritesRect.height * this->mapPosition.y : actualSpritesRect.height * (maximumField.y-1.f);
+	actualPixel.x = (this->mapPosition.x < maximumField.x && this->mapPosition.x >= 0.f)? actualSpritesRect.width * this->mapPosition.x : actualSpritesRect.width * (maximumField.x-1.f);//calculating actualPixel.x of actualSprite
+	actualPixel.y = (this->mapPosition.y < maximumField.y && this->mapPosition.y >= 0.f)? actualSpritesRect.height * this->mapPosition.y : actualSpritesRect.height * (maximumField.y-1.f);//calculating actualPixel.y of actualSprite
 	actualSprite.setPosition(actualPixel);
-	window->draw(actualSprite);
+	window->draw(actualSprite); //drawing actualSprite to the window
 }
