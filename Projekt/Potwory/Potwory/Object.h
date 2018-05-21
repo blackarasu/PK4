@@ -9,7 +9,7 @@ public:
 	Object();
 	~Object();
 	Object(const float &x, const float &y);
-	Object(const float &x, const float &y, const  std::string &ID);
+	Object(const float &x, const float &y, const std::string &ID);
 	Object(const float &x, const float &y, const std::string &ID, const std::string &fileName);
 //Sets
 	void SetPosition(const float &x,const float &y);//Set float x, y;

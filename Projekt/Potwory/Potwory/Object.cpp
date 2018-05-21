@@ -95,5 +95,14 @@ std::string Object::GetID()
 
 void Object::DrawToWindow(sf::RenderWindow * window)
 {
+	sf::IntRect actualSpritesRect = actualSprite.getTextureRect();
+	sf::Vector2u windowSize = window->getSize();
+	sf::Vector2u maximumField;
+	maximumField.x = windowSize.x/actualSpritesRect.width;
+	maximumField.y = windowSize.y/actualSpritesRect.height;
+	sf::Vector2f actualPixel;
+	actualPixel.x = (this->x < maximumField.x && this->x >= 0.f)? actualSpritesRect.width * this->x : actualSpritesRect.width * (maximumField.x-1.f);
+	actualPixel.y = (this->y < maximumField.y && this->y >= 0.f)? actualSpritesRect.height * this->y : actualSpritesRect.height * (maximumField.y-1.f);
+	actualSprite.setPosition(actualPixel);
 	window->draw(actualSprite);
 }
