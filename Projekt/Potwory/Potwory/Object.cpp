@@ -23,14 +23,19 @@ Object::Object(const float &x, const float &y, const std::string &ID):Object(x, 
 
 Object::Object(const float &x, const float &y,const std::string &ID, const std::string &fileName):Object(x,y,ID)
 {
+	bool failedToOpenFile = false;
 	try {
 		SetTexture(fileName);
 	}
-	catch (std::string exp)
+	catch (std::string exception)
 	{
-		std::cout << exp << std::endl;
+		std::cout << exception << std::endl;
+		failedToOpenFile = true;
 	}
-	this->SetSprites();
+	if (!failedToOpenFile)
+	{
+		this->SetSprites();
+	}
 }
 
 void Object::SetX(const float &x)
@@ -105,8 +110,15 @@ void Object::DrawToWindow(sf::RenderWindow * window)
 	sf::IntRect actualSpritesRect = this->actualSprite.getTextureRect(); //getting Rectangle of actualSprite for calculating the maximumFieldOfMap
 	sf::Vector2u windowSize = window->getSize(); //getting size of window in pixels (x,y)
 	sf::Vector2u maximumField;
-	maximumField.x = windowSize.x / actualSpritesRect.width;
-	maximumField.y = windowSize.y/actualSpritesRect.height;
+	if (actualSpritesRect.width > 0 && actualSpritesRect.height > 0)
+	{
+		maximumField.x = windowSize.x / actualSpritesRect.width;
+		maximumField.y = windowSize.y / actualSpritesRect.height;
+	}
+	else
+	{
+		return;
+	}
 	sf::Vector2f actualPixel;
 	actualPixel.x = (this->mapPosition.x < maximumField.x && this->mapPosition.x >= 0.f)? actualSpritesRect.width * this->mapPosition.x : actualSpritesRect.width * (maximumField.x-1.f);//calculating actualPixel.x of actualSprite
 	actualPixel.y = (this->mapPosition.y < maximumField.y && this->mapPosition.y >= 0.f)? actualSpritesRect.height * this->mapPosition.y : actualSpritesRect.height * (maximumField.y-1.f);//calculating actualPixel.y of actualSprite*/
