@@ -23,7 +23,14 @@ Object::Object(const float &x, const float &y, const std::string &ID):Object(x, 
 
 Object::Object(const float &x, const float &y,const std::string &ID, const std::string &fileName):Object(x,y,ID)
 {
-	SetTexture(fileName);
+	try {
+		SetTexture(fileName);
+	}
+	catch (std::string exp)
+	{
+		std::cout << exp << std::endl;
+	}
+	this->SetSprites();
 }
 
 void Object::SetX(const float &x)
@@ -95,14 +102,14 @@ std::string Object::GetID()
 
 void Object::DrawToWindow(sf::RenderWindow * window)
 {
-	sf::IntRect actualSpritesRect = actualSprite.getTextureRect(); //getting Rectangle of actualSprite for calculating the maximumFieldOfMap
+	sf::IntRect actualSpritesRect = this->actualSprite.getTextureRect(); //getting Rectangle of actualSprite for calculating the maximumFieldOfMap
 	sf::Vector2u windowSize = window->getSize(); //getting size of window in pixels (x,y)
 	sf::Vector2u maximumField;
-	maximumField.x = windowSize.x/actualSpritesRect.width;
-	maximumField.y = windowSize.y/actualSpritesRect.height;
+	maximumField.x = actualSpritesRect.width>0?windowSize.x/actualSpritesRect.width:mapPosition.x;
+	maximumField.y = actualSpritesRect.height>0?windowSize.y/actualSpritesRect.height:mapPosition.y;
 	sf::Vector2f actualPixel;
 	actualPixel.x = (this->mapPosition.x < maximumField.x && this->mapPosition.x >= 0.f)? actualSpritesRect.width * this->mapPosition.x : actualSpritesRect.width * (maximumField.x-1.f);//calculating actualPixel.x of actualSprite
-	actualPixel.y = (this->mapPosition.y < maximumField.y && this->mapPosition.y >= 0.f)? actualSpritesRect.height * this->mapPosition.y : actualSpritesRect.height * (maximumField.y-1.f);//calculating actualPixel.y of actualSprite
-	actualSprite.setPosition(actualPixel);
-	window->draw(actualSprite); //drawing actualSprite to the window
+	actualPixel.y = (this->mapPosition.y < maximumField.y && this->mapPosition.y >= 0.f)? actualSpritesRect.height * this->mapPosition.y : actualSpritesRect.height * (maximumField.y-1.f);//calculating actualPixel.y of actualSprite*/
+	this->actualSprite.setPosition(actualPixel);
+	window->draw(this->actualSprite); //drawing actualSprite to the window
 }
