@@ -8,7 +8,7 @@ class Object
 public:
 //Constructors/Destructors
 	Object();
-	~Object()=default;
+	~Object();
 	Object(const float &x, const float &y);
 	Object(const float &x, const float &y, const std::string &ID);
 	Object(const float &x, const float &y, const std::string &ID, const sf::Texture &texture);
@@ -22,8 +22,8 @@ public:
 	virtual sf::Sprite* TextureToSprite(const sf::Texture &texture);//Load texture to vector of sprite;
 	virtual void SetSprites(const sf::Texture &texture);
 //Getters
-	float GetX(); //from maPosition
-	float GetY(); //from maPosition
+	float GetX(); //from mapPosition
+	float GetY(); //from mapPosition
 	std::string GetID();
 //Methods
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -35,7 +35,7 @@ private:
 	sf::Vector2f mapPosition; 
 	std::string ID; //Identificator for Object
 	//sf::Texture texture; //nieoptymalne
-	sf::Sprite actualSprite;
+	sf::Sprite* actualSprite; 
 //Methods
 	void SetX(const float &x); //Set mapPosition.x
 	void SetY(const float &y); //Set mapPosition.y
