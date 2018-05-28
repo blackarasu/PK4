@@ -1,15 +1,8 @@
 #include "stdafx.h"
 #include "Object.h"
 
-Object::Object()
-{
-	this->mapPosition.x = 0;
-	this->mapPosition.y = 0;
-}
-
-Object::~Object()
-{
-}
+Object::Object():Object(0.f,0.f,"I'm nothing")
+{}
 
 Object::Object(const float &x, const float &y)
 {
@@ -21,7 +14,12 @@ Object::Object(const float &x, const float &y, const std::string &ID):Object(x, 
 	SetID(ID);
 }
 
-Object::Object(const float &x, const float &y,const std::string &ID, const std::string &fileName):Object(x,y,ID)
+Object::Object(const float & x, const float & y, const std::string & ID, const sf::Texture & texture):Object(x,y,ID)
+{
+	SetSprites(texture);
+}
+
+/*Object::Object(const float &x, const float &y,const std::string &ID, const std::string &fileName):Object(x,y,ID)
 {
 	bool failedToOpenFile = false;
 	try {
@@ -36,7 +34,7 @@ Object::Object(const float &x, const float &y,const std::string &ID, const std::
 	{
 		this->SetSprites();
 	}
-}
+}*/
 
 void Object::SetX(const float &x)
 {
@@ -69,20 +67,25 @@ void Object::SetPositionToActualSprite(const float &x, const float &y)
 	this->actualSprite.setPosition(x, y);
 }
 
-void Object::SetTexture(const std::string &fileName)
+/*void Object::SetTexture(const std::string &fileName)
 {
-}
+	if (!this->texture.loadFromFile(fileName))
+	{
+		std::string exception = "File " + fileName + " not found!";
+		throw exception;
+	}
+}*/
 
-sf::Sprite Object::TextureToSprite(sf::Texture *texture) //use it for vector of sprites
+sf::Sprite* Object::TextureToSprite(const sf::Texture &texture) //use it for vector of sprites
 {
-	sf::Sprite sprite;
-	sprite.setTexture(*texture);
+	sf::Sprite* sprite;
+	sprite->setTexture(texture);
 	return sprite;
 }
 
-void Object::SetSprites()
+void Object::SetSprites(const sf::Texture &texture)
 {
-	this->actualSprite.setTexture(this->texture);
+	this->actualSprite.setTexture(texture);
 }
 
 float Object::GetX()
@@ -99,7 +102,7 @@ std::string Object::GetID()
 {
 	return this->ID;
 }
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void Object::DrawToWindow(sf::RenderWindow * window)
 {
 	sf::IntRect actualSpritesRect = this->actualSprite.getTextureRect(); //getting Rectangle of actualSprite for calculating the maximumFieldOfMap
@@ -120,3 +123,4 @@ void Object::DrawToWindow(sf::RenderWindow * window)
 	this->actualSprite.setPosition(actualPixel);
 	window->draw(this->actualSprite); //drawing actualSprite to the window
 }
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
