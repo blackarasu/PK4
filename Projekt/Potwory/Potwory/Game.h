@@ -8,6 +8,7 @@
 //Large_Monster
 #pragma once
 #include"stdafx.h"
+#include"Object.h"
 #include"Constances.h"
 class Game
 {
@@ -18,9 +19,16 @@ public:
 //getters
 
 //setters
-	//void SetTexture(const std::string &fileName);//Loading Texture from file
+	sf::Texture* LoadTexture(const std::string &fileName);//Loading Texture from file
+	void LoadTextures();//n times LoadTexture
 private:
-	std::vector<sf::Texture> textures;
+//fields
+	sf::Event event;
+	sf::RenderWindow *window;
+	std::vector<Object*> objects;
+	std::vector<sf::Texture*> textures;
+//methods
+	void SaveToLogFile(const std::string &logFileName, const std::string &message);
 };
 
 
