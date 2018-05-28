@@ -71,11 +71,6 @@ void Object::SetPositionToActualSprite(const float &x, const float &y)
 
 void Object::SetTexture(const std::string &fileName)
 {
-	if (!this->texture.loadFromFile(fileName))
-	{
-		std::string exception = "File " + fileName + " not found!";
-		throw exception;
-	}
 }
 
 sf::Sprite Object::TextureToSprite(sf::Texture *texture) //use it for vector of sprites

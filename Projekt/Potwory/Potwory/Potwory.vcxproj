@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="Constances.h" />
     <ClInclude Include="Dynamic_Object.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Heart.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Potwory.cpp" />
     <ClCompile Include="stdafx.cpp">
