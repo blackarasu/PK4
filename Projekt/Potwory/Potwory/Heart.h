@@ -15,8 +15,8 @@ public:
 	void SetHpToRecover(unsigned int hp);
 //methods
 	void DoAction(int &hp) override;
-private:
-	unsigned int hpToRecover;
 //getters
 	unsigned int GetHpToRecover();
+private:
+	unsigned int hpToRecover;
 };
