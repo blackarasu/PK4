@@ -28,23 +28,6 @@ Object::Object(const float & x, const float & y, const std::string & ID, const s
 	SetSprites(texture);
 }
 
-/*Object::Object(const float &x, const float &y,const std::string &ID, const std::string &fileName):Object(x,y,ID)
-{
-	bool failedToOpenFile = false;
-	try {
-		SetTexture(fileName);
-	}
-	catch (std::string exception)
-	{
-		std::cout << exception << std::endl;
-		failedToOpenFile = true;
-	}
-	if (!failedToOpenFile)
-	{
-		this->SetSprites();
-	}
-}*/
-
 void Object::SetX(const float &x)
 {
 	this->mapPosition.x = x;
@@ -76,15 +59,6 @@ void Object::SetPositionToActualSprite(const float &x, const float &y)
 	this->actualSprite->setPosition(x, y);
 }
 
-/*void Object::SetTexture(const std::string &fileName)
-{
-	if (!this->texture.loadFromFile(fileName))
-	{
-		std::string exception = "File " + fileName + " not found!";
-		throw exception;
-	}
-}*/
-
 sf::Sprite* Object::TextureToSprite(const sf::Texture &texture) //use it for vector of sprites
 {
 	sf::Sprite* sprite= new sf::Sprite();
@@ -109,6 +83,11 @@ float Object::GetX()
 float Object::GetY()
 {
 	return this->mapPosition.y;
+}
+
+sf::Vector2f Object::GetMapPosition()
+{
+	return this->mapPosition;
 }
 
 std::string Object::GetID()
