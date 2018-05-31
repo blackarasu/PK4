@@ -23,7 +23,8 @@ public:
 //Getters
 	float GetX(); //from pixelsPositon
 	float GetY(); //from pixelsPositon
-	sf::Vector2f GetMapPosition();
+	sf::Vector2f GetPixelsPosition(); //Get values of pixelsPosition
+	sf::Vector2f* GetAddressPixelsPosition(); //Get address to pixelsPosition
 	std::string GetID();
 	sf::Sprite* GetActualSpriteAddress();
 //Methods

@@ -92,9 +92,14 @@ float Object::GetY()
 	return this->pixelsPositon.y;
 }
 
-sf::Vector2f Object::GetMapPosition()
+sf::Vector2f Object::GetPixelsPosition()
 {
 	return this->pixelsPositon;
+}
+
+sf::Vector2f * Object::GetAddressPixelsPosition()
+{
+	return &(this->pixelsPositon);
 }
 
 std::string Object::GetID()
