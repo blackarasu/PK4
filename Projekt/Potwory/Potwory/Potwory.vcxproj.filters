@@ -39,13 +39,7 @@
     <ClInclude Include="Game.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
-    <ClInclude Include="Heart.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
-    </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -69,6 +63,12 @@
     <ClInclude Include="Constances.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Pliki nagłówkowe\Done</Filter>
+    </ClInclude>
+    <ClInclude Include="Heart.h">
+      <Filter>Pliki nagłówkowe\Done</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -81,6 +81,9 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Heart.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>

@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Heart.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Potwory.cpp" />
     <ClCompile Include="stdafx.cpp">

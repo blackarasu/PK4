@@ -3,7 +3,7 @@
 
 Game::Game()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(1366, 768), "Potwory.exe", sf::Style::Default);
+	this->window = new sf::RenderWindow(DEFAULT_SIZE_VIDEO, "Potwory.exe", sf::Style::Default);
 	LoadTextures();
 }
 
