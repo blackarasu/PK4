@@ -26,7 +26,7 @@ public:
 	std::string GetID();
 //Methods
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	virtual void DrawToWindow(sf::RenderWindow *window); //!!!!!!Find other way to DrawToWindow because it is not scallable!!!!!!!!!!!!!!!!!!!!!!!!! //Optimal only for the same size of sprites
+	void DrawToWindow(sf::RenderWindow *window, sf::Vector2f *position); //!!!!!!Find other way to DrawToWindow because it is not scallable!!!!!!!!!!!!!!!!!!!!!!!!! //Optimal only for the same size of sprites
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	virtual void DoAction() = 0; //future object's Action/-s
 	virtual void DoAction(int &valueToChange)=0; //object's Action/-s operated with referenced value to change
