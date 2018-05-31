@@ -26,16 +26,18 @@ Object::Object(const float &x, const float &y, const std::string &ID):Object(x, 
 Object::Object(const float & x, const float & y, const std::string & ID, const sf::Texture & texture):Object(x,y,ID)
 {
 	SetSprites(texture);
+	sf::IntRect sizeOfSprite = this->actualSprite->getTextureRect();
+	SetPosition(float(sizeOfSprite.width)*this->pixelsPositon.x, float(sizeOfSprite.height)*this->pixelsPositon.y);
 }
 
 void Object::SetX(const float &x)
 {
-	this->mapPosition.x = x;
+	this->pixelsPositon.x = x;
 }
 
 void Object::SetY(const float &y)
 {
-	this->mapPosition.y = y;
+	this->pixelsPositon.y = y;
 }
 
 void Object::SetPosition(const float &x, const float &y)
@@ -56,7 +58,7 @@ void Object::SetActualSprite(sf::Sprite *newSprite)
 
 void Object::SetPositionToActualSprite()
 {
-	this->actualSprite->setPosition(this->mapPosition.x, this->mapPosition.y);
+	this->actualSprite->setPosition(this->pixelsPositon.x, this->pixelsPositon.y);
 }
 
 void Object::SetPositionToActualSprite(const float &x, const float &y)
@@ -82,42 +84,34 @@ void Object::SetSprites(const sf::Texture &texture)
 
 float Object::GetX()
 {
-	return this->mapPosition.x;
+	return this->pixelsPositon.x;
 }
 
 float Object::GetY()
 {
-	return this->mapPosition.y;
+	return this->pixelsPositon.y;
 }
 
 sf::Vector2f Object::GetMapPosition()
 {
-	return this->mapPosition;
+	return this->pixelsPositon;
 }
 
 std::string Object::GetID()
 {
 	return this->ID;
 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+sf::Sprite * Object::GetActualSpriteAddress()
+{
+	return this->actualSprite;
+}
+
 void Object::DrawToWindow(sf::RenderWindow * window, sf::Vector2f *position)
 {
-	sf::IntRect actualSpritesRect = this->actualSprite->getTextureRect(); //getting Rectangle of actualSprite for calculating the maximumFieldOfMap
 	sf::Vector2u windowSize = window->getSize(); //getting size of window in pixels (x,y)
-	sf::Vector2u maximumField;
-	if (actualSpritesRect.width > 0 && actualSpritesRect.height > 0)
-	{
-		maximumField.x = windowSize.x / actualSpritesRect.width;
-		maximumField.y = windowSize.y / actualSpritesRect.height;
-	}
-	else
-	{
-		return;
-	}
 	sf::Vector2f actualPixel;
-	actualPixel.x = (position->x < maximumField.x && position->x >= 0.f)? actualSpritesRect.width * position->x : actualSpritesRect.width * (maximumField.x-1.f);//calculating actualPixel.x of actualSprite
-	actualPixel.y = (position->y < maximumField.y && position->y >= 0.f)? actualSpritesRect.height * position->y : actualSpritesRect.height * (maximumField.y-1.f);//calculating actualPixel.y of actualSprite*/
+	actualPixel.x = (position->x < windowSize.x && position->x >= 0.f)? position->x : windowSize.x;//calculating actualPixel.x of actualSprite
+	actualPixel.y = (position->y < windowSize.y && position->y >= 0.f)? position->y : windowSize.y;//calculating actualPixel.y of actualSprite*/
 	this->actualSprite->setPosition(actualPixel);
 	window->draw(*(this->actualSprite)); //drawing actualSprite to the window
 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
