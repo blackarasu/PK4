@@ -49,6 +49,11 @@ void Object::SetID(const std::string &ID)
 	this->ID = ID;
 }
 
+void Object::SetActualSprite(sf::Sprite *newSprite)
+{
+	this->actualSprite = newSprite;
+}
+
 void Object::SetPositionToActualSprite()
 {
 	this->actualSprite->setPosition(this->mapPosition.x, this->mapPosition.y);

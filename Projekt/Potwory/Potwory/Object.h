@@ -15,6 +15,7 @@ public:
 //Setters
 	void SetPosition(const float &x,const float &y);//Set float x, y;
 	void SetID(const std::string &ID);//Set Object ID
+	void SetActualSprite(sf::Sprite *newSprite);
 	void SetPositionToActualSprite();//Position x,y in class
 	void SetPositionToActualSprite(const float &x, const float &y);//our Position (i.e. Teleport/absolut position)
 	virtual sf::Sprite* TextureToSprite(const sf::Texture &texture);//Load texture to vector of sprite;
