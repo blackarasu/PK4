@@ -29,5 +29,7 @@ void Wall::DoAction(sf::Vector2f & valueToChange, const int & lastAction)
 	case RIGHT:
 		valueToChange.x += 1.0f;
 		break;
+	default:
+		break;
 	}
 }
