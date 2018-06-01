@@ -13,9 +13,9 @@ Wall::~Wall()
 {
 }
 
-void Wall::DoAction(sf::Vector2f & valueToChange, const int & lastAction)
+void Wall::DoAction(sf::Vector2f & valueToChange, const int & lastMove)
 {
-	switch (lastAction)
+	switch (lastMove)
 	{
 	case UP:
 		valueToChange.y -= 1.0f;
