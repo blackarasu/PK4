@@ -19,6 +19,12 @@
     <Filter Include="Pliki nagłówkowe\Done">
       <UniqueIdentifier>{957982f5-80ee-463b-a294-206f410e86c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Done\Objects">
+      <UniqueIdentifier>{8a73d2ec-c07c-4a80-a57e-b190f14baedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Done\Controlers">
+      <UniqueIdentifier>{5d168710-83c6-4fc4-9ff4-f58d41a4ce78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -63,17 +69,17 @@
     <ClInclude Include="Constances.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Pliki nagłówkowe\Done</Filter>
-    </ClInclude>
     <ClInclude Include="Heart.h">
-      <Filter>Pliki nagłówkowe\Done</Filter>
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>Pliki nagłówkowe\Done</Filter>
+    <ClInclude Include="Object.h">
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
     <ClInclude Include="PickableObject.h">
-      <Filter>Pliki nagłówkowe\Done</Filter>
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
