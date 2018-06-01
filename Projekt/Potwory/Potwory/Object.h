@@ -9,7 +9,7 @@ public:
 //Constructors/Destructors
 	Object();
 	~Object();
-	Object(const float &x, const float &y);
+	Object(const float &x, const float &y); //x,y are coordinates from map (not pixel position)/ if you want set pixel position use constructor with 4 parameters
 	Object(const float &x, const float &y, const std::string &ID);
 	Object(const float &x, const float &y, const std::string &ID, const sf::Texture &texture);
 //Setters
@@ -30,8 +30,8 @@ public:
 //Methods
 	void DrawToWindow(sf::RenderWindow *window, sf::Vector2f *position); //Draws to window Object
 	virtual void DoAction() = 0; //future object's Action/-s
-	virtual void DoAction(int &valueToChange)=0; //object's Action/-s operated with referenced value to change'
-	virtual void DoAction(int &valueToChange, int lastAction) = 0; //Useful for walls
+	virtual void DoAction(int &valueToChange) = 0; //object's Action/-s operated with referenced value to change'
+	virtual void DoAction(sf::Vector2f &valueToChange, const int &lastAction) = 0; //Useful for walls
 private:
 //Fields
 	sf::Vector2f pixelsPositon; 
@@ -41,3 +41,4 @@ private:
 	void SetX(const float &x); //Set pixelsPositon.x
 	void SetY(const float &y); //Set pixelsPositon.y
 };
+
