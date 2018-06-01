@@ -69,8 +69,11 @@
     <ClInclude Include="Heart.h">
       <Filter>Pliki nagłówkowe\Done</Filter>
     </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Pliki nagłówkowe\Done</Filter>
+    </ClInclude>
     <ClInclude Include="PickableObject.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
+      <Filter>Pliki nagłówkowe\Done</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +93,9 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="PickableObject.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
