@@ -12,6 +12,8 @@ public:
 	Object(const float &x, const float &y); //x,y are coordinates from map (not pixel position)/ if you want set pixel position use constructor with 4 parameters
 	Object(const float &x, const float &y, const std::string &ID);
 	Object(const float &x, const float &y, const std::string &ID, const sf::Texture &texture);
+	Object(const std::string &ID, const sf::Texture &texture);
+	Object(const std::string &ID);
 //Setters
 	void SetPosition(const float &x,const float &y);//Set float x, y;
 	void SetID(const std::string &ID);//Set Object ID
@@ -32,6 +34,7 @@ public:
 	virtual bool DoAction() = 0; //good for weapon Action
 	virtual void DoAction(int &valueToChange) = 0; //object's Action/-s operated with referenced value to change'
 	virtual void DoAction(sf::Vector2f &valueToChange, const int &lastAction) = 0; //Useful for walls
+	inline void FixPosition();
 private:
 //Fields
 	sf::Vector2f pixelsPositon; 

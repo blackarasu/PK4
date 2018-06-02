@@ -20,14 +20,24 @@ Object::Object(const float &x, const float &y)
 
 Object::Object(const float &x, const float &y, const std::string &ID):Object(x, y)
 {
-	SetID(ID);
+	this->ID = ID;
 }
 
 Object::Object(const float & x, const float & y, const std::string & ID, const sf::Texture & texture):Object(x,y,ID)
 {
 	SetSprites(texture);
-	sf::IntRect sizeOfSprite = this->actualSprite->getTextureRect();
-	SetPosition(float(sizeOfSprite.width)*this->pixelsPositon.x, float(sizeOfSprite.height)*this->pixelsPositon.y);
+	FixPosition();
+}
+
+Object::Object(const std::string & ID, const sf::Texture & texture) :Object(ID)
+{
+	SetSprites(texture);
+	FixPosition();
+}
+
+Object::Object(const std::string & ID)
+{
+	this->ID = ID;
 }
 
 void Object::SetX(const float &x)
@@ -119,4 +129,10 @@ void Object::DrawToWindow(sf::RenderWindow * window, sf::Vector2f *position)
 	actualPixel.y = (position->y < windowSize.y && position->y >= 0.f)? position->y : windowSize.y;//calculating actualPixel.y of actualSprite*/
 	this->actualSprite->setPosition(actualPixel);
 	window->draw(*(this->actualSprite)); //drawing actualSprite to the window
+}
+
+inline void Object::FixPosition()
+{
+	sf::IntRect sizeOfSprite = this->actualSprite->getTextureRect();
+	SetPosition(float(sizeOfSprite.width)*this->pixelsPositon.x, float(sizeOfSprite.height)*this->pixelsPositon.y);
 }
