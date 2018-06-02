@@ -22,6 +22,7 @@ public:
 	void SetSprites(const sf::Texture &texture) override; //overrided method for SetSprites. It sets two sprites for NOT_PICKED and PICKED version;
 //getters 
 	sf::Vector2f *GetPlayerPosition();
+	bool IsPicked();
 //methods
 	void DrawPickableObject(sf::RenderWindow *window, const sf::IntRect &sizeOfPicker); //different function for drawing PICKED and NOT_PICKED object
 	void PickedMe(sf::Vector2f *playerPositon); //Someone picked Pickable Object

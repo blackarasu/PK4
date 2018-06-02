@@ -57,6 +57,11 @@ sf::Vector2f * Pickable::GetPlayerPosition()
 	return this->playerPosition;
 }
 
+bool Pickable::IsPicked()
+{
+	return this->isPicked;
+}
+
 void Pickable::DrawPickableObject(sf::RenderWindow * window, const sf::IntRect &sizeOfPicker)
 {
 	if (this->isPicked == false)
