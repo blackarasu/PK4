@@ -12,6 +12,10 @@ class Pickable :public Object
 public:
 //constructors and destructors
 	Pickable();
+	Pickable(const float &x, const float &y, const std::string ID);
+	Pickable(const std::string ID, sf::Vector2f *pickedPosition);
+	Pickable(const float &x, const float &y, const std::string ID, const sf::Texture &texture);
+	Pickable(const std::string ID, const sf::Texture &texture, sf::Vector2f *pickedPosition);
 	~Pickable();
 //setters
 	void SetPlayerPosition(sf::Vector2f *playerPosition); //set address to playerPosition
@@ -21,9 +25,10 @@ public:
 //methods
 	void DrawPickableObject(sf::RenderWindow *window, const sf::IntRect &sizeOfPicker); //different function for drawing PICKED and NOT_PICKED object
 	void PickedMe(sf::Vector2f *playerPositon); //Someone picked Pickable Object
-private:
-	enum Picked{NOT_PICKED, PICKED};
+protected:
+	enum Picked { NOT_PICKED, PICKED };
 	bool isPicked;
+private:
 	sf::Vector2f *playerPosition;
 	std::vector<sf::Sprite> sprites;
 };

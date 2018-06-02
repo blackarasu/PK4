@@ -1,10 +1,34 @@
 #include "stdafx.h"
 #include "PickableObject.h"
 
-Pickable::Pickable()
+Pickable::Pickable():Object(0,0,"I'm nothing")
 {
 	this->isPicked = false;
 	this->playerPosition = nullptr;
+}
+
+Pickable::Pickable(const float & x, const float & y, const std::string ID):Object(x,y,ID)
+{
+	this->isPicked = false;
+	this->playerPosition = nullptr;
+}
+
+Pickable::Pickable(const std::string ID, sf::Vector2f *pickedPosition):Object(ID)
+{
+	PickedMe(pickedPosition);
+}
+
+Pickable::Pickable(const float & x, const float & y, const std::string ID, const sf::Texture & texture):Object(x,y,ID)
+{
+	SetSprites(texture);
+	FixPosition();
+	this->isPicked = false;
+	this->playerPosition = nullptr;
+}
+
+Pickable::Pickable(const std::string ID, const sf::Texture & texture, sf::Vector2f *pickedPosition):Object(ID,texture)
+{
+	PickedMe(pickedPosition);
 }
 
 Pickable::~Pickable()
