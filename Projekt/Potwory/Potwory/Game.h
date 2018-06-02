@@ -9,7 +9,6 @@
 #pragma once
 #include"stdafx.h"
 #include"Object.h"
-#include"Constances.h"
 class Game
 {
 public:
