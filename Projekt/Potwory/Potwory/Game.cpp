@@ -87,7 +87,7 @@ void Game::GameLoop()
 		}
 		for (auto i = 0; i < pickableObjects.size(); ++i)
 		{
-			pickableObjects[i]->DrawPickableObject(window);
+			pickableObjects[i]->DrawToWindow(window, pickableObjects[i]->GetAddressPixelsPosition());
 		}
 		window->display();
 	}
