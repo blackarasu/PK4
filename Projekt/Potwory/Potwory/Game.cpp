@@ -4,6 +4,7 @@
 Game::Game()
 {
 	this->window = new sf::RenderWindow(DEFAULT_SIZE_VIDEO, "Potwory.exe", sf::Style::Default);
+	this->window->setFramerateLimit(60);
 	LoadTextures();
 }
 
@@ -43,6 +44,52 @@ void Game::LoadTextures()
 			std::cout << exception << std::endl;
 			SaveToLogFile("TexturesErrors.log", exception);
 		}
+	}
+}
+
+void Game::AddWall(Wall * wall)
+{
+	objects.push_back(wall);
+}
+
+void Game::AddSword(Sword * sword)
+{
+	pickableObjects.push_back(sword);
+}
+
+void Game::AddHeart(Heart * heart)
+{
+	objects.push_back(heart);
+}
+
+void Game::GameLoop()
+{
+	Heart *heart = new Heart(2.f, 3.f, *(textures[HEART]));
+	Wall *wall = new Wall(4.f, 5.f, *(textures[WALL]));
+	Sword *sword = new Sword(10.5f, 2.f, *(textures[SWORD]));
+	AddHeart(heart);
+	AddWall(wall);
+	AddSword(sword);
+	while (window->isOpen())
+	{
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window->close();
+			}
+		}
+		window->clear();
+		for (auto i = 0; i < objects.size(); ++i)
+		{
+			objects[i]->DrawToWindow(window, objects[i]->GetAddressPixelsPosition());
+		}
+		for (auto i = 0; i < pickableObjects.size(); ++i)
+		{
+			pickableObjects[i]->DrawPickableObject(window);
+		}
+		window->display();
 	}
 }
 

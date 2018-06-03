@@ -13,24 +13,24 @@ public:
 //constructors and destructors
 	Pickable();
 	Pickable(const float &x, const float &y, const std::string ID);
-	Pickable(const std::string ID, sf::Vector2f *pickedPosition);
+	Pickable(const std::string ID, Object *picker);
 	Pickable(const float &x, const float &y, const std::string ID, const sf::Texture &texture);
-	Pickable(const std::string ID, const sf::Texture &texture, sf::Vector2f *pickedPosition);
+	Pickable(const std::string ID, const sf::Texture &texture, Object *picker);
 	~Pickable();
 //setters
-	void SetPlayerPosition(sf::Vector2f *playerPosition); //set address to playerPosition
+	void SetPlayerPosition(Object *playerPosition); //set address to playerPosition
 	void SetSprites(const sf::Texture &texture) override; //overrided method for SetSprites. It sets two sprites for NOT_PICKED and PICKED version;
 //getters 
 	sf::Vector2f *GetPlayerPosition();
 	bool IsPicked();
 //methods
-	void DrawPickableObject(sf::RenderWindow *window, const sf::IntRect &sizeOfPicker); //different function for drawing PICKED and NOT_PICKED object
-	void PickedMe(sf::Vector2f *playerPositon); //Someone picked Pickable Object
+	void DrawPickableObject(sf::RenderWindow *window); //different function for drawing PICKED and NOT_PICKED object
+	void PickedMe(Object *playerPositon); //Someone picked Pickable Object
 protected:
 	enum Picked { NOT_PICKED, PICKED };
 	bool isPicked;
 private:
-	sf::Vector2f *playerPosition;
+	Object * picker; // change to DynamicObject *dynamicObject when is written
 	std::vector<sf::Sprite> sprites;
 };
 

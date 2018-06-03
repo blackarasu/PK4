@@ -21,26 +21,27 @@ public:
 	void SetPositionToActualSprite();//Position x,y in class
 	void SetPositionToActualSprite(const float &x, const float &y);//our Position (i.e. Teleport/absolut position)
 	virtual sf::Sprite* TextureToSprite(const sf::Texture &texture);//Load texture to vector of sprite;
-	virtual void SetSprites(const sf::Texture &texture);
+	virtual void SetSprites(const sf::Texture &texture); //virtual setter for setting sprites (base sets actualSprite for texture)
 //Getters
 	float GetX(); //from pixelsPositon
 	float GetY(); //from pixelsPositon
 	sf::Vector2f GetPixelsPosition(); //Get values of pixelsPosition
 	sf::Vector2f* GetAddressPixelsPosition(); //Get address to pixelsPosition
-	std::string GetID();
-	sf::Sprite* GetActualSpriteAddress();
+	std::string GetID(); //object's ID
+	sf::Sprite* GetActualSpriteAddress(); //address to ActualSprite
 //Methods
 	void DrawToWindow(sf::RenderWindow *window, sf::Vector2f *position); //Draws to window Object
+//virtual Methods
 	virtual bool DoAction() = 0; //good for weapon Action
 	virtual void DoAction(int &valueToChange) = 0; //object's Action/-s operated with referenced value to change' ie. Heart
 	virtual void DoAction(sf::Vector2f &valueToChange, const int &lastAction) = 0; //Useful for walls
 protected:
-	inline void FixPosition();
+	inline void FixPosition(); //fix postion got from map
 private:
 //Fields
-	sf::Vector2f pixelsPositon; 
+	sf::Vector2f pixelsPositon; //fixed position
 	std::string ID; //Identificator for Object
-	sf::Sprite* actualSprite; 
+	sf::Sprite* actualSprite; //used for drawing
 //Methods
 	void SetX(const float &x); //Set pixelsPositon.x
 	void SetY(const float &y); //Set pixelsPositon.y

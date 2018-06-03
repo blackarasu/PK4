@@ -6,6 +6,7 @@ Sword::Sword():Pickable(0,0,"Sword")
 	this->damage = 10.2f;
 	this->endurance = 5.0f;
 	this->attackSpeed = 1.0f;
+	this->range = 4.0f;
 }
 
 Sword::Sword(const float & x, const float & y, const sf::Texture & texture) :Pickable(x, y, "Sword", texture)
@@ -13,22 +14,81 @@ Sword::Sword(const float & x, const float & y, const sf::Texture & texture) :Pic
 	this->damage = 10.0f;
 	this->endurance = 5.0f;
 	this->attackSpeed = 1.0f;
+	this->range = 4.0f;
 }
 
-Sword::Sword(const float & x, const float & y, const sf::Texture & texture, const float & damage, const float & endurance, const float & attackSpeed) : Pickable(x, y, "Sword", texture)
+Sword::Sword(const float & x, const float & y, const sf::Texture & texture, const float & damage, const float & endurance, const float & attackSpeed, const float & range) : Pickable(x, y, "Sword", texture)
 {
 	this->damage = damage;
 	this->endurance = endurance;
 	this->attackSpeed = attackSpeed;
+	this->range = range;
 }
 
-Sword::Sword(const sf::Texture & texture, sf::Vector2f * pickedPosition, const float & damage, const float & endurance, const float & attackSpeed) :Pickable("Sword", texture, pickedPosition)
+Sword::Sword(const sf::Texture & texture, Object * picker, const float & damage, const float & endurance, const float & attackSpeed, const float & range) :Pickable("Sword", texture, picker)
 {
 	this->damage = damage;
 	this->endurance = endurance;
 	this->attackSpeed = attackSpeed;
+	this->range = range;
 }
 
 Sword::~Sword()
 {
 }
+
+void Sword::SetDamage(const float & damage)
+{
+	this->damage = damage;
+}
+
+void Sword::SetEnduramce(const float & endurance)
+{
+	this->endurance = endurance;
+}
+
+void Sword::SetAttackSpeed(const float & attackSpeed)
+{
+	this->attackSpeed = attackSpeed;
+}
+
+void Sword::SetRange(const float & range)
+{
+	this->range = range;
+}
+
+void Sword::SetAttributes(const float & damage, const float & endurance, const float & attackSpeed, const float & range)
+{
+	this->damage = damage;
+	this->endurance = endurance;
+	this->attackSpeed = attackSpeed;
+	this->range = range;
+}
+
+float Sword::GetDamage()
+{
+	return this->damage;
+}
+
+float Sword::GetAttackSpeed()
+{
+	return this->attackSpeed;
+}
+
+float Sword::GetRange()
+{
+	return this->range;
+}
+
+bool Sword::DoAction()
+{
+	if (this->endurance > 0 && IsPicked())
+	{
+		//add animation here
+		this->endurance -= 1.0f;
+		return true;
+	}
+	return false;
+}
+
+

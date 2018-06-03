@@ -4,18 +4,18 @@
 Pickable::Pickable():Object(0,0,"I'm nothing")
 {
 	this->isPicked = false;
-	this->playerPosition = nullptr;
+	this->picker = nullptr;
 }
 
 Pickable::Pickable(const float & x, const float & y, const std::string ID):Object(x,y,ID)
 {
 	this->isPicked = false;
-	this->playerPosition = nullptr;
+	this->picker = nullptr;
 }
 
-Pickable::Pickable(const std::string ID, sf::Vector2f *pickedPosition):Object(ID)
+Pickable::Pickable(const std::string ID, Object *picker):Object(ID)
 {
-	PickedMe(pickedPosition);
+	PickedMe(picker);
 }
 
 Pickable::Pickable(const float & x, const float & y, const std::string ID, const sf::Texture & texture):Object(x,y,ID)
@@ -23,38 +23,38 @@ Pickable::Pickable(const float & x, const float & y, const std::string ID, const
 	SetSprites(texture);
 	FixPosition();
 	this->isPicked = false;
-	this->playerPosition = nullptr;
+	this->picker = nullptr;
 }
 
-Pickable::Pickable(const std::string ID, const sf::Texture & texture, sf::Vector2f *pickedPosition):Object(ID,texture)
+Pickable::Pickable(const std::string ID, const sf::Texture & texture, Object *picker):Object(ID,texture)
 {
-	PickedMe(pickedPosition);
+	PickedMe(picker);
 }
 
 Pickable::~Pickable()
 {
-	if (this->playerPosition != nullptr)
+	if (this->picker != nullptr)
 	{
-		delete this->playerPosition;
+		delete this->picker;
 	}
 }
 
-void Pickable::SetPlayerPosition(sf::Vector2f * playerPosition)
+void Pickable::SetPlayerPosition(Object * playerPosition)
 {
-	this->playerPosition = playerPosition;
+	this->picker = playerPosition;
 }
 
 void Pickable::SetSprites(const sf::Texture & texture)
 {
 	this->sprites.push_back(sf::Sprite(texture, NOT_PICKED_RECT));
 	this->sprites.push_back(sf::Sprite(texture, PICKED_RECT));
-	this->sprites[PICKED].scale(0.25f, 0.25f);
+	this->sprites[PICKED].scale(0.25f, 0.25f);//need to test it 
 	this->SetActualSprite(&(this->sprites[NOT_PICKED]));
 }
 
 sf::Vector2f * Pickable::GetPlayerPosition()
 {
-	return this->playerPosition;
+	return this->picker->GetAddressPixelsPosition();
 }
 
 bool Pickable::IsPicked()
@@ -62,24 +62,29 @@ bool Pickable::IsPicked()
 	return this->isPicked;
 }
 
-void Pickable::DrawPickableObject(sf::RenderWindow * window, const sf::IntRect &sizeOfPicker)
+void Pickable::DrawPickableObject(sf::RenderWindow * window)
 {
 	if (this->isPicked == false)
 	{
-		DrawToWindow(window, &(this->GetPixelsPosition()));
+		DrawToWindow(window, this->GetAddressPixelsPosition());
 	}
 	else
 	{
-		sf::Vector2f fixedPosition = *(this->playerPosition);
-		fixedPosition.x += sizeOfPicker.width * 0.5f;
-		fixedPosition.y += sizeOfPicker.height * 0.5f;
-		DrawToWindow(window, this->playerPosition);
+		if (picker != nullptr) //check it 
+		{
+			sf::Vector2f fixedPosition = this->picker->GetPixelsPosition();
+			sf::Sprite *sprite = this->picker->GetActualSpriteAddress();
+			sf::IntRect sizeOfPicker = sprite->getTextureRect();
+			fixedPosition.x += sizeOfPicker.width * 0.5f;//center of picker
+			fixedPosition.y += sizeOfPicker.height * 0.5f;//center of picker
+			DrawToWindow(window, &fixedPosition);
+		}
 	}
 }
 
-void Pickable::PickedMe(sf::Vector2f *playerPositon)
+void Pickable::PickedMe(Object *picker)
 {
 	this->isPicked = true;
 	this->SetActualSprite(&(this->sprites[PICKED]));
-	this->playerPosition = playerPosition;
+	this->picker = picker;
 }

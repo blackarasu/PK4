@@ -14,6 +14,8 @@ public:
 //setters
 	void SetHpToRecover(unsigned int hp);
 //methods
+	bool DoAction()override { return false; } //action for pickable (wearable)
+	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
 	void DoAction(int &hp) override;
 //getters
 	unsigned int GetHpToRecover();
