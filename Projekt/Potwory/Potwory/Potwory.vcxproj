@@ -180,6 +180,7 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Dynamic_Object.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heart.cpp" />
     <ClCompile Include="Object.cpp" />
