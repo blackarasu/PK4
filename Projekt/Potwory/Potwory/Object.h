@@ -36,10 +36,12 @@ public:
 	virtual void DoAction(int &valueToChange) = 0; //object's Action/-s operated with referenced value to change' ie. Heart
 	virtual void DoAction(sf::Vector2f &valueToChange, const int &lastAction) = 0; //Useful for walls
 protected:
+//Fields
+	sf::Vector2f pixelsPositon; //fixed position
+//Methods
 	inline void FixPosition(); //fix postion got from map
 private:
 //Fields
-	sf::Vector2f pixelsPositon; //fixed position
 	std::string ID; //Identificator for Object
 	sf::Sprite* actualSprite; //used for drawing
 //Methods
