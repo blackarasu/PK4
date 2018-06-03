@@ -48,8 +48,8 @@ void Pickable::SetSprites(const sf::Texture & texture)
 {
 	this->sprites.push_back(sf::Sprite(texture, NOT_PICKED_RECT));
 	this->sprites.push_back(sf::Sprite(texture, PICKED_RECT));
-	this->sprites[PICKED].scale(0.25f, 0.25f);//need to test it 
-	this->SetActualSprite(&(this->sprites[NOT_PICKED]));
+	this->sprites[Picked::PICKED].scale(0.25f, 0.25f);//need to test it 
+	this->SetActualSprite(&(this->sprites[Picked::NOT_PICKED]));
 }
 
 sf::Vector2f * Pickable::GetPlayerPosition()
@@ -83,6 +83,6 @@ void Pickable::DrawPickableObject(sf::RenderWindow * window,const sf::IntRect &s
 void Pickable::PickedMe(sf::Vector2f *playerPosition)
 {
 	this->isPicked = true;
-	this->SetActualSprite(&(this->sprites[PICKED]));
+	this->SetActualSprite(&(this->sprites[Picked::PICKED]));
 	this->playerPosition = playerPosition;
 }
