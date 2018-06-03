@@ -25,7 +25,7 @@ Sword::Sword(const float & x, const float & y, const sf::Texture & texture, cons
 	this->range = range;
 }
 
-Sword::Sword(const sf::Texture & texture, Object * picker, const float & damage, const float & endurance, const float & attackSpeed, const float & range) :Pickable("Sword", texture, picker)
+Sword::Sword(const sf::Texture & texture, sf::Vector2f * playerPosition, const float & damage, const float & endurance, const float & attackSpeed, const float & range) :Pickable("Sword", texture, playerPosition)
 {
 	this->damage = damage;
 	this->endurance = endurance;
