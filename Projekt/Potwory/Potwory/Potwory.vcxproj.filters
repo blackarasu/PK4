@@ -82,7 +82,7 @@
       <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Sword.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
