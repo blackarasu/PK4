@@ -22,6 +22,7 @@ public:
 //constructors destructors
 	Dynamic();
 	Dynamic(const float &x, const float &y, const std::string &ID, const sf::Texture &texture);
+	Dynamic(const float &x, const float &y, const std::string &ID, const sf::Texture &texture, const int &hp, const sf::Vector2f &speed);
 	~Dynamic();
 //setters
 	void SetSprites(const sf::Texture &texture)override;
@@ -38,10 +39,11 @@ public:
 	void MoveLeft(float frameTime);
 	void MoveRight(float frameTime);
 	void NoMove();
+protected:
+	Pickable * item; //address to picked item if you picked one
 private:
 	int hp; 
 	sf::Vector2f speed; //how many pixels u can go through one second
-	Pickable *item; //address to picked item if you picked one
 	sf::Sprite sprites[DIRECTIONS][ANIMATION_FRAMES];
 	unsigned int lastMove;
 	unsigned int frame;

@@ -20,6 +20,13 @@ Dynamic::Dynamic(const float & x, const float & y, const std::string & ID, const
 	this->speed.y = 150.0f;
 	this->item = nullptr;
 	this->lastMove = Direction::DOWN;
+	this->frame = Frame::STOP;
+}
+
+Dynamic::Dynamic(const float &x, const float &y, const std::string &ID, const sf::Texture &texture, const int &hp, const sf::Vector2f &speed) :Dynamic(x, y, ID, texture)
+{
+	this->hp = hp;
+	this->speed = speed;
 }
 
 Dynamic::~Dynamic()
