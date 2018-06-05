@@ -8,8 +8,12 @@
 //Large_Monster
 #pragma once
 #include"stdafx.h"
+#include"Large_Monster.h"
 #include"Object.h"
 #include"Heart.h"
+#include"Player.h"
+#include"Score.h"
+#include"Small_Monster.h"
 #include"Sword.h"
 #include"Wall.h"
 class Game
@@ -28,11 +32,16 @@ public:
 	void AddHeart(Heart *heart); //add heart to objects
 //methods
 	void GameLoop();//main GameLoop
+	bool IsAnyKeyPressed();
 private:
 //fields
+	float frametime;
+	sf::Clock clock;
 	sf::Event event; //event element
 	sf::RenderWindow *window; //pointer to window (probably will be moved to Console but who knows)
 	std::vector<Object*> objects; //vector for objects
+	std::shared_ptr<Player>player;
+	//std::vector<Monster*> monsters;
 	std::vector<Pickable*> pickableObjects; //vector for Pickable(Object)
 	std::vector<sf::Texture*> textures; //vector for textures
 //methods

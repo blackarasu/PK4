@@ -6,6 +6,10 @@ Game::Game()
 	this->window = new sf::RenderWindow(DEFAULT_SIZE_VIDEO, "Potwory.exe", sf::Style::Default);
 	this->window->setFramerateLimit(60);
 	LoadTextures();
+	player =std::make_shared<Player>(10.f, 5.f, *(this->textures[CHARACTER]), 100, sf::Vector2f{200.f,200.f});
+	objects.push_back(new Heart(2.f, 3.f, *(textures[HEART])));
+	objects.push_back(new Wall(4.f, 5.f, *(textures[WALL])));
+	pickableObjects.push_back(new Sword(10.5f, 2.f, *(textures[SWORD])));
 }
 
 Game::~Game()
@@ -17,6 +21,10 @@ Game::~Game()
 	for (auto i = 0; i < objects.size(); ++i)
 	{
 		delete objects[i];
+	}
+	for (auto i = 0; i < pickableObjects.size(); ++i)
+	{
+		delete pickableObjects[i];
 	}
 }
 
@@ -35,14 +43,20 @@ void Game::LoadTextures()
 {
 	for (auto i = 0; i < fileLocations.size(); ++i)
 	{
+		bool no_Error = true;
 		try
 		{
 			this->textures.push_back(LoadTexture(fileLocations[i]));
 		}
 		catch (std::string exception)
 		{
+			no_Error = false;
 			std::cout << exception << std::endl;
 			SaveToLogFile("TexturesErrors.log", exception);
+		}
+		if (no_Error)
+		{
+			std::cout << "File " << fileLocations[i] << " has been loaded properly" << std::endl;
 		}
 	}
 }
@@ -64,23 +78,32 @@ void Game::AddHeart(Heart * heart)
 
 void Game::GameLoop()
 {
-	Heart *heart = new Heart(2.f, 3.f, *(textures[HEART]));
-	Wall *wall = new Wall(4.f, 5.f, *(textures[WALL]));
-	Sword *sword = new Sword(10.5f, 2.f, *(textures[SWORD]));
-	AddHeart(heart);
-	AddWall(wall);
-	AddSword(sword);
 	while (window->isOpen())
 	{
-		sf::Event event;
+		frametime = clock.restart().asSeconds();
 		while (window->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				window->close();
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+			{
+				if (player->DoAction())
+				{
+					//Attack
+					
+				}
+			}
+			player->Move(frametime);
+			if (!IsAnyKeyPressed())
+			{
+				player->NoMove();
+			}
 		}
 		window->clear();
+		
+	//DRAW
 		for (auto i = 0; i < objects.size(); ++i)
 		{
 			objects[i]->DrawToWindow(window, objects[i]->GetAddressPixelsPosition());
@@ -89,8 +112,19 @@ void Game::GameLoop()
 		{
 			pickableObjects[i]->DrawToWindow(window, pickableObjects[i]->GetAddressPixelsPosition());
 		}
+		player->DrawToWindow(window, player->GetAddressPixelsPosition());
 		window->display();
 	}
+}
+
+bool Game::IsAnyKeyPressed()
+{
+	for (int k = -1; k < sf::Keyboard::KeyCount; ++k)
+	{
+		if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(k)))
+			return true;
+	}
+	return false;
 }
 
 void Game::SaveToLogFile(const std::string & logFileName, const std::string & message)
