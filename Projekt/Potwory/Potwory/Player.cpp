@@ -29,21 +29,17 @@ void Player::Move(float frameTime)
 	{
 		MoveLeft(frameTime);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		MoveDown(frameTime);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		MoveUp(frameTime);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		MoveRight(frameTime);
-	}
-	else
-	{
-		NoMove();
 	}
 }
 		

@@ -17,7 +17,7 @@ public:
 	bool DoAction()override;//action for pickable (wearable)
 	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
 	void DoAction(int &hp) override {}
-	void Move(float frameTime);
+	void Move(float frameTime);//move one of 4 to 8 directions
 private:
 	//sf::Event *event;
 };
