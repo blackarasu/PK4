@@ -2,7 +2,9 @@
 #include "Object.h"
 
 Object::Object():Object(0.f,0.f,"I'm nothing")
-{}
+{
+	actualSprite = nullptr;
+}
 
 Object::~Object()
 {
@@ -16,6 +18,7 @@ Object::~Object()
 Object::Object(const float &x, const float &y)
 {
 	SetPosition(x, y);
+	actualSprite = nullptr;
 }
 
 Object::Object(const float &x, const float &y, const std::string &ID):Object(x, y)
@@ -35,7 +38,7 @@ Object::Object(const std::string & ID, const sf::Texture & texture) :Object(ID)
 	FixPosition();
 }
 
-Object::Object(const std::string & ID)
+Object::Object(const std::string & ID):Object(0,0)
 {
 	this->ID = ID;
 }

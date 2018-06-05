@@ -35,6 +35,7 @@ Dynamic::~Dynamic()
 	{
 		delete this->item;
 	}
+	SetActualSprite(nullptr);
 }
 
 void Dynamic::SetSprites(const sf::Texture & texture)

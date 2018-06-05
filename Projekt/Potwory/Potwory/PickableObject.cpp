@@ -37,6 +37,7 @@ Pickable::~Pickable()
 	{
 		delete this->playerPosition;
 	}
+	SetActualSprite(nullptr);
 }
 
 void Pickable::SetPlayerPosition(sf::Vector2f* playerPosition)
