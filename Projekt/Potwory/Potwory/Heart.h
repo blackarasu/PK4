@@ -16,7 +16,7 @@ public:
 //methods
 	bool DoAction()override { return false; } //action for pickable (wearable)
 	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
-	void DoAction(int &hp) override;
+	bool DoAction(int &hp) override;
 //getters
 	unsigned int GetHpToRecover();
 private:

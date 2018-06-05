@@ -21,9 +21,10 @@ void Heart::SetHpToRecover(unsigned int hp)
 	this->hpToRecover = hp;
 }
 
-void Heart::DoAction(int &hp)
+bool Heart::DoAction(int &hp)
 {
 	hp += this->hpToRecover;
+	return true;
 }
 
 unsigned int Heart::GetHpToRecover()

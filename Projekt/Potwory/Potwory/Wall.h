@@ -11,6 +11,6 @@ public:
 //methods
 	void DoAction(sf::Vector2f &valueToChange, const int &lastMove) override;
 	bool DoAction()override { return false; }  //action for pickable (wearable)
-	void DoAction(int &valueToChange) override {}
+	bool DoAction(int &valueToChange) override { return false; }
 private:
 };

@@ -25,7 +25,7 @@ public:
 //methods
 	bool DoAction() override;
 	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
-	void DoAction(int &hp) override {}
+	bool DoAction(int &hp) override { return false; }
 private:
 	float damage; //dmg dealt in every attack
 	float endurance;//how much attacks to destroy (even not hit)
