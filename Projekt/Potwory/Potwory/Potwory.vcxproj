@@ -185,6 +185,7 @@
     <ClCompile Include="Heart.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PickableObject.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Potwory.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="stdafx.cpp">
