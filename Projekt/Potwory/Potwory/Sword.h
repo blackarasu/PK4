@@ -13,15 +13,15 @@ public:
 	Sword(const sf::Texture &texture, sf::Vector2f* playerPosition, const float &damage, const float &endurance, const float &attackSpeed, const float &range); //if you want give someone a sword from the begining
 	~Sword();
 //setters
-	void SetDamage(const float &damage);
-	void SetEnduramce(const float &endurance);
-	void SetAttackSpeed(const float &attackSpeed);
-	void SetRange(const float &range);
-	void SetAttributes(const float &damage, const float &endurance, const float &attackSpeed, const float &range);
+	void SetDamage(const float &damage) override;
+	void SetEnduramce(const float &endurance) override;
+	void SetAttackSpeed(const float &attackSpeed) override;
+	void SetRange(const float &range) override;
+	void SetAttributes(const float &damage, const float &endurance, const float &attackSpeed, const float &range) override;
 //getters
-	float GetDamage();//dmg dealt every attack
-	float GetAttackSpeed();//how many times per second you can use attack
-	float GetRange();//Range in pixels
+	float GetDamage() override;//dmg dealt every attack
+	float GetAttackSpeed() override;//how many times per second you can use attack
+	float GetRange() override;//Range in pixels
 //methods
 	bool DoAction() override;
 	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
