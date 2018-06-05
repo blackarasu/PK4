@@ -57,6 +57,11 @@ unsigned int Dynamic::GetLastMove()
 	return this->lastMove;
 }
 
+Pickable * Dynamic::GetItem()
+{
+	return this->item;
+}
+
 void Dynamic::MoveUp(float frameTime)
 {
 	this->pixelsPositon.y -= frameTime * speed.y;
@@ -131,4 +136,13 @@ void Dynamic::MoveRight(float frameTime)
 		this->frame = Frame::FIRST;
 	}
 	SetActualSprite(&(this->sprites[this->lastMove][this->frame]));
+}
+
+void Dynamic::NoMove()
+{
+	if (this->frame == Frame::FIRST)
+	{
+		++this->frame;
+	}
+	SetActualSprite(&(this->sprites[this->lastMove][Frame::STOP]));
 }

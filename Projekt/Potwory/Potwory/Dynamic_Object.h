@@ -4,7 +4,7 @@
 //Iloœæ zdrowia
 #pragma once
 #include "stdafx.h"
-#include "Object.h"
+#include "PickableObject.h"
 
 enum Frame :unsigned int { FIRST, STOP, THIRD };
 const unsigned int DIRECTIONS = 4;
@@ -27,22 +27,24 @@ public:
 	void SetSprites(const sf::Texture &texture)override;
 	void SetHP(const int &hp);
 	template <class T>
-	void Pick(T* item);//Use only derivatives of the Object
+	void Pick(T* item);//Use only derivatives of the Pickable
 //getters
 	int GetHP();
 	unsigned int GetLastMove();
+	Pickable * GetItem();
 //methods
 	void MoveUp(float frameTime);
 	void MoveDown(float frameTime);
 	void MoveLeft(float frameTime);
 	void MoveRight(float frameTime);
+	void NoMove();
 private:
 	int hp; 
 	sf::Vector2f speed; //how many pixels u can go through one second
-	Object *item; //address to picked item if you picked one
+	Pickable *item; //address to picked item if you picked one
 	sf::Sprite sprites[DIRECTIONS][ANIMATION_FRAMES];
 	unsigned int lastMove;
-	int frame;
+	unsigned int frame;
 };
 
 template<class T>
