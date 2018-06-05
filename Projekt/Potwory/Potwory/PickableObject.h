@@ -26,6 +26,15 @@ public:
 //methods
 	void DrawPickableObject(sf::RenderWindow *window,const sf::IntRect &sizeOfPicker); //different function for drawing PICKED and NOT_PICKED object
 	void PickedMe(sf::Vector2f* playerPosition); //Someone picked Pickable Object
+//virtual
+	virtual float GetRange() = 0;
+	virtual void SetDamage(const float &damage)=0;
+	virtual void SetEnduramce(const float &endurance)=0;
+	virtual void SetAttackSpeed(const float &attackSpeed)=0;
+	virtual void SetRange(const float &range)=0;
+	virtual void SetAttributes(const float &damage, const float &endurance, const float &attackSpeed, const float &range)=0;
+	virtual float GetDamage()=0;//dmg dealt every attack
+	virtual float GetAttackSpeed()=0;//how many times per second you can use attack
 protected:
 	enum Picked { NOT_PICKED, PICKED };
 	bool isPicked;
