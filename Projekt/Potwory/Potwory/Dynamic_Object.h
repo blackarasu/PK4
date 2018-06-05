@@ -6,16 +6,17 @@
 #include "stdafx.h"
 #include "PickableObject.h"
 
+
 enum Frame :unsigned int { FIRST, STOP, THIRD };
 const unsigned int DIRECTIONS = 4;
 const unsigned int ANIMATION_FRAMES = 3;
 const sf::IntRect SPRITES_POSITION[DIRECTIONS][ANIMATION_FRAMES] = {
-	sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),
-	sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),
-	sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),
-	sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 }),sf::IntRect({ 0,0,16,16 })
-};//fill when sprites will be ready
-
+	sf::IntRect({ 5,1,37,54 }),sf::IntRect({ 57,1,28,54 }),sf::IntRect({ 107,1,28,54 }),
+	sf::IntRect({ 6,57,39,54 }),sf::IntRect({ 54,57,38,54 }),sf::IntRect({ 102,57,38,54 }),
+	sf::IntRect({ 6,113,39,54 }),sf::IntRect({ 54,113,38,54 }),sf::IntRect({ 102,113,38,54 }),
+	sf::IntRect({ 9,170,28,54 }),sf::IntRect({ 59,170,28,54 }),sf::IntRect({ 102,170,37,54 })
+};
+const sf::Vector2f SCALE(0.42105263157894736842105263157895f, 0.2962962962962962962962962962963f);
 class Dynamic:public Object
 {
 public:

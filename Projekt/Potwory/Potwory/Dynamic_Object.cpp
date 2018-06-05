@@ -44,9 +44,10 @@ void Dynamic::SetSprites(const sf::Texture & texture)
 		for (auto j = 0; j < ANIMATION_FRAMES; ++j)
 		{
 			this->sprites[i][j] = sf::Sprite(texture, SPRITES_POSITION[i][j]);
+			this->sprites[i][j].setScale(SCALE);
 		}
 	}
-	SetActualSprite(&(this->sprites[Direction::DOWN][1]));
+	SetActualSprite(&(this->sprites[Direction::DOWN][Frame::STOP]));
 }
 
 void Dynamic::SetHP(const int & hp)
