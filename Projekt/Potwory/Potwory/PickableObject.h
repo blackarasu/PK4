@@ -36,6 +36,7 @@ public:
 	virtual float GetDamage()=0;//dmg dealt every attack
 	virtual float GetAttackSpeed()=0;//how many times per second you can use attack
 protected:
+	sf::Clock clock;
 	enum Picked { NOT_PICKED, PICKED };
 	bool isPicked;
 private:

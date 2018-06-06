@@ -82,13 +82,21 @@ float Sword::GetRange()
 
 bool Sword::DoAction()
 {
-	if (this->endurance > 0 && IsPicked())
+	if (clock.getElapsedTime().asSeconds() > (1 / this->attackSpeed))
 	{
-		//add animation here
-		this->endurance -= 1.0f;
+		if (this->endurance > 0 && IsPicked())
+		{
+			//add animation
+			this->endurance -= 1.0f;
+			clock.restart();
+			return true;
+		}
+		return false;
+	}
+	else 
+	{
 		return true;
 	}
-	return false;
 }
 
 
