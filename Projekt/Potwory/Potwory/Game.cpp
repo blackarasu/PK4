@@ -95,10 +95,28 @@ void Game::GameLoop()
 					float range = player->GetItem()->GetRange();
 					float damage = player->GetItem()->GetDamage();
 					sf::Vector2f playerPosition = player->GetPixelsPosition();
-					sf::IntRect attackRectangle = (player->GetActualSpriteAddress()->getTextureRect());
-					attackRectangle.left = (int)playerPosition.x + attackRectangle.width;
-					attackRectangle.width = (int)range;
-					attackRectangle.height = (int)range;
+					sf::FloatRect attackRectangle = (player->GetActualSpriteAddress()->getGlobalBounds());
+					attackRectangle.width = range;
+					attackRectangle.height = range;
+					switch (player->GetLastMove())
+					{
+					case Direction::RIGHT:
+						attackRectangle.left = playerPosition.x + attackRectangle.width;
+						break;
+					case Direction::UP:
+						attackRectangle.left = playerPosition.x + attackRectangle.width;
+						attackRectangle.width *= -OPPOSITE;
+						attackRectangle.height *= -OPPOSITE;
+						break;
+					case Direction::LEFT:
+						attackRectangle.width *=-OPPOSITE;
+						attackRectangle.height *=-OPPOSITE;
+						break;
+					case Direction::DOWN:
+						attackRectangle.left = playerPosition.x + attackRectangle.width;
+						attackRectangle.top = playerPosition.y + attackRectangle.height;
+						break;
+					}
 					//for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect)
 					
 				}

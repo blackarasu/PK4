@@ -71,15 +71,15 @@ void Pickable::DrawPickableObject(sf::RenderWindow * window,const sf::FloatRect 
 		sf::Vector2f fixedPosition = *(this->playerPosition);
 		fixedPosition.x += sizeOfPicker.width * 0.8f;
 		fixedPosition.y += sizeOfPicker.height * 0.35f;
-		if (lastMove == Direction::RIGHT)
-		{
-			SetActualSprite(&(this->sprites[Picked::PICKED]));
-		}
-		else if (lastMove == Direction::LEFT)
+		if (lastMove == Direction::LEFT)
 		{
 			SetActualSprite(&(this->sprites[Picked::REVERSE]));
 			fixedPosition.x -= sizeOfPicker.width * 0.2f;
 			fixedPosition.y += sizeOfPicker.height * 0.1f;
+		}
+		else
+		{
+			SetActualSprite(&(this->sprites[Picked::PICKED]));
 		}
 		DrawToWindow(window, &(fixedPosition));
 	}

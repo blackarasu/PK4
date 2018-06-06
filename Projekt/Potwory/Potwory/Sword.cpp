@@ -12,9 +12,9 @@ Sword::Sword():Pickable(0,0,"Sword")
 Sword::Sword(const float & x, const float & y, const sf::Texture & texture) :Pickable(x, y, "Sword", texture)
 {
 	this->damage = 10.0f;
-	this->endurance = 5.0f;
+	this->endurance = 10.0f;
 	this->attackSpeed = 1.0f;
-	this->range = 4.0f;
+	this->range = GetActualSpriteAddress()->getGlobalBounds().width;
 }
 
 Sword::Sword(const float & x, const float & y, const sf::Texture & texture, const float & damage, const float & endurance, const float & attackSpeed, const float & range) : Pickable(x, y, "Sword", texture)

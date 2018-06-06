@@ -11,3 +11,4 @@ const std::vector<std::string> fileLocations = {
 	"..//sprites//wall.png"};
 const sf::VideoMode DEFAULT_SIZE_VIDEO = { 1024,768 };
 enum Direction:unsigned int{ RIGHT, DOWN, UP, LEFT };
+const int OPPOSITE = -1;
