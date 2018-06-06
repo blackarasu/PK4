@@ -6,6 +6,7 @@
 //Change when create texture for weapons (2 views)
 const sf::IntRect NOT_PICKED_RECT = { 0,0,16,16 }; //Left/Top /width/height in pixels
 const sf::IntRect PICKED_RECT = { 17,0,16,16 }; //Left/Top /width/height in pixels
+const sf::IntRect REVERSE_RECT = { 34,0,16,16 };//Left/Top /width/height in pixels
 
 class Pickable :public Object
 {
@@ -24,7 +25,7 @@ public:
 	sf::Vector2f *GetPlayerPosition();
 	bool IsPicked();
 //methods
-	void DrawPickableObject(sf::RenderWindow *window,const sf::IntRect &sizeOfPicker); //different function for drawing PICKED and NOT_PICKED object
+	void DrawPickableObject(sf::RenderWindow *window, const sf::FloatRect &sizeOfPicker, const unsigned int lastMove); //different function for drawing PICKED and NOT_PICKED object
 	void PickedMe(sf::Vector2f* playerPosition); //Someone picked Pickable Object
 //virtual
 	virtual float GetRange() = 0;
@@ -37,7 +38,7 @@ public:
 	virtual float GetAttackSpeed()=0;//how many times per second you can use attack
 protected:
 	sf::Clock clock;
-	enum Picked { NOT_PICKED, PICKED };
+	enum Picked { NOT_PICKED, PICKED, REVERSE };
 	bool isPicked;
 private:
 	sf::Vector2f* playerPosition; 

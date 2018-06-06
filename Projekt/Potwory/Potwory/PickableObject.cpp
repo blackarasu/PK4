@@ -47,6 +47,10 @@ void Pickable::SetSprites(const sf::Texture & texture)
 	this->sprites.push_back(sf::Sprite(texture, NOT_PICKED_RECT));
 	this->sprites.push_back(sf::Sprite(texture, PICKED_RECT));
 	this->sprites[Picked::PICKED].scale(0.25f, 0.25f);//need to test it 
+	this->sprites[Picked::PICKED].setColor(sf::Color::Yellow);
+	this->sprites.push_back(sf::Sprite(texture, REVERSE_RECT));
+	this->sprites[Picked::REVERSE].scale(0.25f, 0.25f);//need to test it 
+	this->sprites[Picked::REVERSE].setColor(sf::Color::Yellow);
 	this->SetActualSprite(&(this->sprites[Picked::NOT_PICKED]));
 }
 
@@ -60,14 +64,24 @@ bool Pickable::IsPicked()
 	return this->isPicked;
 }
 
-void Pickable::DrawPickableObject(sf::RenderWindow * window,const sf::IntRect &sizeOfPicker)
+void Pickable::DrawPickableObject(sf::RenderWindow * window,const sf::FloatRect &sizeOfPicker,const unsigned int lastMove)
 {
 	if (playerPosition != nullptr) //check it 
 	{
 		sf::Vector2f fixedPosition = *(this->playerPosition);
-		fixedPosition.x += sizeOfPicker.width * 0.5f;
-		fixedPosition.y += sizeOfPicker.height * 0.5f;
-		DrawToWindow(window, this->playerPosition);
+		fixedPosition.x += sizeOfPicker.width * 0.8f;
+		fixedPosition.y += sizeOfPicker.height * 0.35f;
+		if (lastMove == Direction::RIGHT)
+		{
+			SetActualSprite(&(this->sprites[Picked::PICKED]));
+		}
+		else if (lastMove == Direction::LEFT)
+		{
+			SetActualSprite(&(this->sprites[Picked::REVERSE]));
+			fixedPosition.x -= sizeOfPicker.width * 0.2f;
+			fixedPosition.y += sizeOfPicker.height * 0.1f;
+		}
+		DrawToWindow(window, &(fixedPosition));
 	}
 }
 

@@ -126,7 +126,7 @@ void Game::GameLoop()
 		player->DrawToWindow(window, player->GetAddressPixelsPosition());//draw player to window
 		if (player->GetItem() != nullptr)
 		{
-			player->GetItem()->DrawPickableObject(window, player->GetActualSpriteAddress()->getTextureRect());//draw pickableObject on player
+			player->GetItem()->DrawPickableObject(window, player->GetActualSpriteAddress()->getGlobalBounds(), player->GetLastMove());//draw pickableObject on player
 		}
 		window->display();
 	}
