@@ -32,6 +32,8 @@ public:
 	void Pick(T* item);//Use only derivatives of the Pickable
 //getters
 	int GetHP();
+	int *GetAddressHP();
+	sf::Vector2f GetSpeed();
 	unsigned int GetLastMove();
 	Pickable * GetItem();
 //methods

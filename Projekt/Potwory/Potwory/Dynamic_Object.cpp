@@ -34,6 +34,7 @@ Dynamic::~Dynamic()
 	if (this->item != nullptr)
 	{
 		delete this->item;
+		this->item = nullptr;
 	}
 	SetActualSprite(nullptr);
 }
@@ -59,6 +60,16 @@ void Dynamic::SetHP(const int & hp)
 int Dynamic::GetHP()
 {
 	return this->hp;
+}
+
+int *Dynamic::GetAddressHP()
+{
+	return &(this->hp);
+}
+
+sf::Vector2f Dynamic::GetSpeed()
+{
+	return this->speed;
 }
 
 unsigned int Dynamic::GetLastMove()
