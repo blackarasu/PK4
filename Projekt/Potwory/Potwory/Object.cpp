@@ -138,4 +138,5 @@ inline void Object::FixPosition()
 {
 	sf::IntRect sizeOfSprite = this->actualSprite->getTextureRect();
 	SetPosition(float(sizeOfSprite.width)*this->pixelsPositon.x, float(sizeOfSprite.height)*this->pixelsPositon.y);
+	this->actualSprite->setPosition(this->GetPixelsPosition());
 }
