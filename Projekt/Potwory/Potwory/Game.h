@@ -46,6 +46,7 @@ private:
 	std::vector<sf::Texture*> textures; //vector for textures
 //methods
 	void SaveToLogFile(const std::string &logFileName, const std::string &message);
+	inline void PlayerAttack();
 	template <class T>
 	void CheckIntersection(T dynamicObject);
 };
@@ -75,4 +76,11 @@ inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic
 			objects[i]->DoAction(*(dynamicObject->GetAddressPixelsPosition()), dynamicObject->GetLastMove(), frametime, dynamicObject->GetSpeed()); //ie. walls
 		}
 	}
+	if (dynamicObject->GetID() != player->GetID())//if true dynamicObject is ie. monster
+	{
+		//if monster sticks with player->
+		//monster attack
+	}
+
+	//add monsters
 }

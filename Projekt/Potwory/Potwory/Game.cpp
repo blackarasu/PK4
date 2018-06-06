@@ -88,39 +88,7 @@ void Game::GameLoop()
 				window->close();
 			}
 			player->Move(frametime);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
-			{
-				if (player->DoAction())
-				{//Attack
-					float range = player->GetItem()->GetRange();
-					float damage = player->GetItem()->GetDamage();
-					sf::Vector2f playerPosition = player->GetPixelsPosition();
-					sf::FloatRect attackRectangle = (player->GetActualSpriteAddress()->getGlobalBounds());
-					attackRectangle.width = range;
-					attackRectangle.height = range;
-					switch (player->GetLastMove())
-					{
-					case Direction::RIGHT:
-						attackRectangle.left = playerPosition.x + attackRectangle.width;
-						break;
-					case Direction::UP:
-						attackRectangle.left = playerPosition.x + attackRectangle.width;
-						attackRectangle.width *= -OPPOSITE;
-						attackRectangle.height *= -OPPOSITE;
-						break;
-					case Direction::LEFT:
-						attackRectangle.width *=-OPPOSITE;
-						attackRectangle.height *=-OPPOSITE;
-						break;
-					case Direction::DOWN:
-						attackRectangle.left = playerPosition.x + attackRectangle.width;
-						attackRectangle.top = playerPosition.y + attackRectangle.height;
-						break;
-					}
-					//for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect)
-					
-				}
-			}
+			PlayerAttack();
 			if (!IsAnyKeyPressed())
 			{
 				player->NoMove();//Stay still
@@ -169,9 +137,53 @@ void Game::SaveToLogFile(const std::string & logFileName, const std::string & me
 	{
 		char actualTime[26];
 		ctime_s(actualTime, 26, &timer);
+		for (int i = 0; i < 26; ++i)
+		{
+			if (actualTime[i] == '\n' || actualTime[i] == '\r')
+			{
+				actualTime[i] = '\0';
+			}
+		}
 		logFile << "<" << actualTime << "> " << message << std::endl;
 	}
 	logFile.close();
+}
+
+inline void Game::PlayerAttack()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	{
+		if (player->DoAction())
+		{//Attack
+			float range = player->GetItem()->GetRange();
+			float damage = player->GetItem()->GetDamage();
+			sf::Vector2f playerPosition = player->GetPixelsPosition();
+			sf::FloatRect attackRectangle = (player->GetActualSpriteAddress()->getGlobalBounds());
+			attackRectangle.width = range;
+			attackRectangle.height = range;
+			switch (player->GetLastMove())
+			{
+			case Direction::RIGHT:
+				attackRectangle.left = playerPosition.x + attackRectangle.width;
+				break;
+			case Direction::UP:
+				attackRectangle.left = playerPosition.x + attackRectangle.width;
+				attackRectangle.width *= -OPPOSITE;
+				attackRectangle.height *= -OPPOSITE;
+				break;
+			case Direction::LEFT:
+				attackRectangle.width *= -OPPOSITE;
+				attackRectangle.height *= -OPPOSITE;
+				break;
+			case Direction::DOWN:
+				attackRectangle.left = playerPosition.x + attackRectangle.width;
+				attackRectangle.top = playerPosition.y + attackRectangle.height;
+				break;
+			}
+			//for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect)
+
+		}
+	}
 }
 
 
