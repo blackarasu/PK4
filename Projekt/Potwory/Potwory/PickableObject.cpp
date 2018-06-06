@@ -33,10 +33,7 @@ Pickable::Pickable(const std::string ID, const sf::Texture & texture, sf::Vector
 
 Pickable::~Pickable()
 {
-	if (this->playerPosition != nullptr)
-	{
-		delete this->playerPosition;
-	}
+	this->playerPosition = nullptr;
 	SetActualSprite(nullptr);
 }
 
@@ -65,19 +62,12 @@ bool Pickable::IsPicked()
 
 void Pickable::DrawPickableObject(sf::RenderWindow * window,const sf::IntRect &sizeOfPicker)
 {
-	if (this->isPicked == false)
+	if (playerPosition != nullptr) //check it 
 	{
-		DrawToWindow(window, this->GetAddressPixelsPosition());
-	}
-	else
-	{
-		if (playerPosition != nullptr) //check it 
-		{
-			sf::Vector2f fixedPosition = *(this->playerPosition);
-			fixedPosition.x += sizeOfPicker.width * 0.5f;
-			fixedPosition.y += sizeOfPicker.height * 0.5f;
-			DrawToWindow(window, this->playerPosition);
-		}
+		sf::Vector2f fixedPosition = *(this->playerPosition);
+		fixedPosition.x += sizeOfPicker.width * 0.5f;
+		fixedPosition.y += sizeOfPicker.height * 0.5f;
+		DrawToWindow(window, this->playerPosition);
 	}
 }
 
