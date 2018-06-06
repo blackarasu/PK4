@@ -15,7 +15,7 @@ public:
 	~Player();
 //Methods
 	bool DoAction()override;//action for pickable (wearable)
-	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
+	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
 	bool DoAction(int &hp) override { return false; }
 	void Move(float frameTime);//move one of 4 to 8 directions
 private:

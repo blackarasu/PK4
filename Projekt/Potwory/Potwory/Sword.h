@@ -24,7 +24,7 @@ public:
 	float GetRange() override;//Range in pixels
 //methods
 	bool DoAction() override;
-	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
+	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
 	bool DoAction(int &hp) override { return false; }
 private:
 	float damage; //dmg dealt in every attack

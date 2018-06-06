@@ -15,7 +15,7 @@ public:
 	void SetHpToRecover(unsigned int hp);
 //methods
 	bool DoAction()override { return false; } //action for pickable (wearable)
-	void DoAction(sf::Vector2f &valueToChange, const int &lastAction)override {}
+	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
 	bool DoAction(int &hp) override;
 //getters
 	unsigned int GetHpToRecover();

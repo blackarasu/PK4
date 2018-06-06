@@ -34,7 +34,7 @@ public:
 //virtual Methods
 	virtual bool DoAction() = 0; //good for weapon Action
 	virtual bool DoAction(int &valueToChange) = 0; //object's Action/-s operated with referenced value to change' ie. Heart
-	virtual void DoAction(sf::Vector2f &valueToChange, const int &lastAction) = 0; //Useful for walls
+	virtual void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed) = 0; //Useful for walls
 protected:
 //Fields
 	sf::Vector2f pixelsPositon; //fixed position
