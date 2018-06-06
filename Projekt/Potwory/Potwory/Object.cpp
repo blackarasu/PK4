@@ -59,6 +59,11 @@ void Object::SetPosition(const float &x, const float &y)
 	SetY(y);
 }
 
+void Object::SetPosition(const sf::Vector2f & pixelsPosition)
+{
+	this->pixelsPositon = pixelsPosition;
+}
+
 void Object::SetID(const std::string &ID)
 {
 	this->ID = ID;
@@ -128,8 +133,9 @@ void Object::DrawToWindow(sf::RenderWindow * window, sf::Vector2f *position)
 {
 	sf::Vector2u windowSize = window->getSize(); //getting size of window in pixels (x,y)
 	sf::Vector2f actualPixel;
-	actualPixel.x = (position->x < windowSize.x && position->x >= 0.f)? position->x : windowSize.x;//calculating actualPixel.x of actualSprite
-	actualPixel.y = (position->y < windowSize.y && position->y >= 0.f)? position->y : windowSize.y;//calculating actualPixel.y of actualSprite*/
+	actualPixel.x = (position->x + this->actualSprite->getGlobalBounds().width < windowSize.x && position->x >= 0.f)? position->x : windowSize.x - this->actualSprite->getGlobalBounds().width;//calculating actualPixel.x of actualSprite
+	actualPixel.y = (position->y + this->actualSprite->getGlobalBounds().height < windowSize.y && position->y >= 0.f)? position->y : windowSize.y - this->actualSprite->getGlobalBounds().height;//calculating actualPixel.y of actualSprite*/
+	this->SetPosition(actualPixel);
 	this->actualSprite->setPosition(actualPixel);
 	window->draw(*(this->actualSprite)); //drawing actualSprite to the window
 }

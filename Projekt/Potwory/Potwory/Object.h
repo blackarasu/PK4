@@ -16,6 +16,7 @@ public:
 	Object(const std::string &ID);
 //Setters
 	void SetPosition(const float &x,const float &y);//Set float x, y;
+	void SetPosition(const sf::Vector2f &pixelsPosition);
 	void SetID(const std::string &ID);//Set Object ID
 	void SetActualSprite(sf::Sprite *newSprite); //sets actualSpirte to newSprite
 	void SetPositionToActualSprite();//Position x,y in class
