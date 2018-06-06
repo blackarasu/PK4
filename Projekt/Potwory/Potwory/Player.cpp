@@ -18,6 +18,11 @@ bool Player::DoAction()
 {
 	if (this->item != nullptr)
 	{
+		if (!this->item->DoAction())
+		{
+			delete this->item;
+			this->item = nullptr;
+		}
 		return this->item->DoAction();
 	}
 	return false;
