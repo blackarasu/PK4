@@ -46,7 +46,33 @@ private:
 	std::vector<sf::Texture*> textures; //vector for textures
 //methods
 	void SaveToLogFile(const std::string &logFileName, const std::string &message);
+	template <class T>
+	void CheckIntersection(T dynamicObject);
 };
 
-
-
+template<class T>
+inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic 
+{
+	sf::FloatRect objectRectangle = dynamicObject->GetActualSpriteAddress()->getGlobalBounds();
+	for (auto i = 0; i < pickableObjects.size(); ++i)//items
+	{
+		if (pickableObjects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
+		{
+			dynamicObject->Pick(pickableObjects[i]);
+			pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());
+			pickableObjects.erase(pickableObjects.begin() + i);//get rid off picked item from vector (it stills exists);
+		}
+	}
+	for (auto i = 0; i < objects.size(); ++i)
+	{
+		if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
+		{
+			if (objects[i]->DoAction(*(dynamicObject->GetAddressHP())))//ie. heart
+			{
+				delete objects[i];
+				objects.erase(objects.begin() + i);
+			}
+			objects[i]->DoAction(*(dynamicObject->GetAddressPixelsPosition()), dynamicObject->GetLastMove(), frametime, dynamicObject->GetSpeed()); //ie. walls
+		}
+	}
+}

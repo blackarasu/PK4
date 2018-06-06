@@ -87,32 +87,47 @@ void Game::GameLoop()
 			{
 				window->close();
 			}
+			player->Move(frametime);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
 			{
 				if (player->DoAction())
-				{
-					//Attack
+				{//Attack
+					float range = player->GetItem()->GetRange();
+					float damage = player->GetItem()->GetDamage();
+					sf::Vector2f playerPosition = player->GetPixelsPosition();
+					sf::IntRect attackRectangle = (player->GetActualSpriteAddress()->getTextureRect());
+					attackRectangle.left = (int)playerPosition.x + attackRectangle.width;
+					attackRectangle.width = (int)range;
+					attackRectangle.height = (int)range;
+					//for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect)
 					
 				}
 			}
-			player->Move(frametime);
 			if (!IsAnyKeyPressed())
 			{
-				player->NoMove();
+				player->NoMove();//Stay still
 			}
 		}
-		window->clear();
-		
+		CheckIntersection(player);//check intersection with player
+		//for(auto i=0; i<monsters.size();++i)//check intersection for every monster
+		//{
+		//	CheckIntersection(monsters[i]);
+		//}
+		window->clear();//black screen
 	//DRAW
 		for (auto i = 0; i < objects.size(); ++i)
 		{
-			objects[i]->DrawToWindow(window, objects[i]->GetAddressPixelsPosition());
+			objects[i]->DrawToWindow(window, objects[i]->GetAddressPixelsPosition());//draw all others objects
 		}
 		for (auto i = 0; i < pickableObjects.size(); ++i)
 		{
-			pickableObjects[i]->DrawToWindow(window, pickableObjects[i]->GetAddressPixelsPosition());
+			pickableObjects[i]->DrawToWindow(window, pickableObjects[i]->GetAddressPixelsPosition());//draw all unpicked pickableObjects on window
 		}
-		player->DrawToWindow(window, player->GetAddressPixelsPosition());
+		player->DrawToWindow(window, player->GetAddressPixelsPosition());//draw player to window
+		if (player->GetItem() != nullptr)
+		{
+			player->GetItem()->DrawPickableObject(window, player->GetActualSpriteAddress()->getTextureRect());//draw pickableObject on player
+		}
 		window->display();
 	}
 }
@@ -140,3 +155,5 @@ void Game::SaveToLogFile(const std::string & logFileName, const std::string & me
 	}
 	logFile.close();
 }
+
+
