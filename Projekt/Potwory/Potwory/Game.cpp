@@ -80,6 +80,10 @@ void Game::GameLoop()
 {
 	while (window->isOpen())
 	{
+		/*if (player->GetHP() <= 0)
+		{
+			//endGame ->saveScore,ShowScores and waits for button to restart game with other random map
+		}*/
 		frametime = clock.restart().asSeconds();
 		while (window->pollEvent(event))
 		{
