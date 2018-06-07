@@ -83,7 +83,9 @@ int main()
 	zad2(wordd, ComplexPattern);
 
 	//tu utwórz wzorzec 'DatePattern' z ZADANIA 3
-	std::regex DatePattern("([1-9]?[:digit:]{1,3})\\\\((?:[sS][tT][yY])|(?:[lL][uU][tT])|(?:[mM][aA][rR])|(?:[kK][wW][iI])|(?:[mM][aA][jJ])|(?:[cC][zZ][wW])|(?:[lL][iI][pP])|(?:[sS][iI][eE])|(?:[wW][rR][zZ])|(?:[pP][aA][zZ])|(?:[lL][iI][sS])|(?:[gG][rR][uU]))\\\\([1-9]|[1-2][[:digit:]]|3[01])"); //ROK\3_PIERWSZE_LITERY_MIES\NR_DNIA
+	//std::regex DatePattern("([1-9]?[[:digit:]]{1,3})\\\\((?:[sS][tT][yY])|(?:[lL][uU][tT])|(?:[mM][aA][rR]))\\\\([1-9]|[1-2][[:digit:]]|3[01])");;
+	std::regex DatePattern("([1-9]?[[:digit:]]{1,3})\\\\((?:[sS][tT][yY])|(?:[lL][uU][tT])|(?:[mM][aA][rR])|(?:[kK][wW][iI])|(?:[mM][aA][jJ])|(?:[cC][zZ][wW])|(?:[lL][iI][pP])|(?:[sS][iI][eE])|(?:[wW][rR][zZ])|(?:[pP][aA][zZ])|(?:[lL][iI][sS])|(?:[gG][rR][uU]))\\\\([1-9]|[1-2][[:digit:]]|3[01])"); //ROK\3_PIERWSZE_LITERY_MIES\NR_DNIA
+	//std::regex DatePattern("([1-9]?[:digit:]{1,3})\\\\((?:[sS][tT][yY])|(?:[lL][uU][tT])|(?:[mM][aA][rR])|(?:[kK][wW][iI])|(?:[mM][aA][jJ])|(?:[cC][zZ][wW])|(?:[lL][iI][pP])|(?:[sS][iI][eE])|(?:[wW][rR][zZ])|(?:[pP][aA][zZ])|(?:[lL][iI][sS])|(?:[gG][rR][uU]))\\\\([1-9]|[1-2][[:digit:]]|3[01])"); //ROK\3_PIERWSZE_LITERY_MIES\NR_DNIA
 	std::string worde = "1999\\MAR\\31";
 	std::string wordf = "2016\\Sty\\0";
 	std::string wordg = "1\\LuT\\8";
