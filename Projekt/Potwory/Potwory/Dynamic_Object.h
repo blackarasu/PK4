@@ -26,7 +26,7 @@ public:
 	Dynamic(const float &x, const float &y, const std::string &ID, const sf::Texture &texture, const int &hp, const sf::Vector2f &speed);
 	~Dynamic();
 //setters
-	void SetSprites(const sf::Texture &texture)override; //Set 9 sprites from texture and it makes Rectangle from SPRITES_POSITION
+	virtual void SetSprites(const sf::Texture &texture)override; //Set 9 sprites from texture and it makes Rectangle from SPRITES_POSITION
 	void SetHP(const int &hp);
 	template <class T>
 	void Pick(T* item);//Use only derivatives of the Pickable
@@ -42,6 +42,7 @@ public:
 	void MoveLeft(float frameTime);
 	void MoveRight(float frameTime);
 	void NoMove();//Set STOP Sprite
+	virtual sf::FloatRect Attack()=0; //function which returns AttackRectangle 
 protected:
 	Pickable * item; //address to picked item if you picked one
 private:

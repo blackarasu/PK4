@@ -6,7 +6,7 @@
 #include "stdafx.h"
 #include "Dynamic_Object.h"
 
-class Player:public Dynamic
+class Player:public Dynamic//player or character w/e
 {
 public:
 //Constructors & Destructors
@@ -18,6 +18,7 @@ public:
 	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
 	bool DoAction(int &hp) override { return false; }
 	void Move(float frameTime);//move one of 4 to 8 directions
+	sf::FloatRect Attack() override;
 private:
 	//sf::Event *event;
 };

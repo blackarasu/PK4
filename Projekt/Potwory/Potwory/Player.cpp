@@ -48,4 +48,35 @@ void Player::Move(float frameTime)
 		MoveRight(frameTime);
 	}
 }
+
+sf::FloatRect Player::Attack()
+{
+	sf::FloatRect attackRectangle;
+	if (this->DoAction())
+	{//Attack
+		float range = this->GetItem()->GetRange();
+		float damage = this->GetItem()->GetDamage();
+		sf::Vector2f playerPosition = this->GetPixelsPosition();
+		attackRectangle = (this->GetActualSpriteAddress()->getGlobalBounds());
+		switch (this->GetLastMove())
+		{
+		case Direction::RIGHT:
+			attackRectangle.left = playerPosition.x + attackRectangle.width;
+			break;
+		case Direction::UP:
+			attackRectangle.top = playerPosition.y - attackRectangle.height;
+			break;
+		case Direction::LEFT:
+			attackRectangle.left = playerPosition.x - attackRectangle.width;
+			break;
+		case Direction::DOWN:
+			attackRectangle.top = playerPosition.y + attackRectangle.height;
+			break;
+		}
+		attackRectangle.width = range;
+		attackRectangle.height = range;
+		return attackRectangle;
+	}
+	return attackRectangle; //else
+}
 		

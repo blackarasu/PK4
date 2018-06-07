@@ -92,7 +92,14 @@ void Game::GameLoop()
 				window->close();
 			}
 			player->Move(frametime);
-			PlayerAttack();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+			{
+				sf::FloatRect attackRectangle=player->Attack();
+				if (attackRectangle.height != 0 && attackRectangle.width != 0)
+				{
+					////for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect) 
+				}
+			}
 			if (!IsAnyKeyPressed())
 			{
 				player->NoMove();//Stay still
@@ -153,41 +160,5 @@ void Game::SaveToLogFile(const std::string & logFileName, const std::string & me
 	logFile.close();
 }
 
-inline void Game::PlayerAttack()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
-	{
-		if (player->DoAction())
-		{//Attack
-			float range = player->GetItem()->GetRange();
-			float damage = player->GetItem()->GetDamage();
-			sf::Vector2f playerPosition = player->GetPixelsPosition();
-			sf::FloatRect attackRectangle = (player->GetActualSpriteAddress()->getGlobalBounds());
-			attackRectangle.width = range;
-			attackRectangle.height = range;
-			switch (player->GetLastMove())
-			{
-			case Direction::RIGHT:
-				attackRectangle.left = playerPosition.x + attackRectangle.width;
-				break;
-			case Direction::UP:
-				attackRectangle.left = playerPosition.x + attackRectangle.width;
-				attackRectangle.width *= -OPPOSITE;
-				attackRectangle.height *= -OPPOSITE;
-				break;
-			case Direction::LEFT:
-				attackRectangle.width *= -OPPOSITE;
-				attackRectangle.height *= -OPPOSITE;
-				break;
-			case Direction::DOWN:
-				attackRectangle.left = playerPosition.x + attackRectangle.width;
-				attackRectangle.top = playerPosition.y + attackRectangle.height;
-				break;
-			}
-			//for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect)
-
-		}
-	}
-}
 
 

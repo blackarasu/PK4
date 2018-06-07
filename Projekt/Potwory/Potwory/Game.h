@@ -46,7 +46,6 @@ private:
 	std::vector<sf::Texture*> textures; //vector for textures
 //methods
 	void SaveToLogFile(const std::string &logFileName, const std::string &message);
-	inline void PlayerAttack();
 	template <class T>
 	void CheckIntersection(T dynamicObject);
 };
