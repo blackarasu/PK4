@@ -16,7 +16,7 @@ const sf::IntRect SPRITES_POSITION[DIRECTIONS][ANIMATION_FRAMES] = {
 	sf::IntRect({ 6,113,39,54 }),sf::IntRect({ 54,113,38,54 }),sf::IntRect({ 102,113,38,54 }),
 	sf::IntRect({ 9,170,28,54 }),sf::IntRect({ 59,170,28,54 }),sf::IntRect({ 102,170,37,54 })
 };
-const sf::Vector2f SCALE(0.42105263157894736842105263157895f, 0.2962962962962962962962962962963f);
+const sf::Vector2f SCALE(0.42105263157894736842105263157895f, 0.2962962962962962962962962962963f);//scale calculated for 34x54 to 16x16
 class Dynamic:public Object
 {
 public:
