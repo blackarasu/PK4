@@ -136,13 +136,19 @@ void Object::DrawToWindow(sf::RenderWindow * window, sf::Vector2f *position)
 	actualPixel.x = (position->x + this->actualSprite->getGlobalBounds().width < windowSize.x && position->x >= 0.f)? position->x : windowSize.x - this->actualSprite->getGlobalBounds().width;//calculating actualPixel.x of actualSprite
 	actualPixel.y = (position->y + this->actualSprite->getGlobalBounds().height < windowSize.y && position->y >= 0.f)? position->y : windowSize.y - this->actualSprite->getGlobalBounds().height;//calculating actualPixel.y of actualSprite*/
 	this->SetPosition(actualPixel);
-	this->actualSprite->setPosition(actualPixel);
-	window->draw(*(this->actualSprite)); //drawing actualSprite to the window
+	if (actualSprite != nullptr)
+	{
+		this->actualSprite->setPosition(actualPixel);
+		window->draw(*(this->actualSprite)); //drawing actualSprite to the window
+	}
 }
 
 inline void Object::FixPosition()
 {
 	sf::IntRect sizeOfSprite = this->actualSprite->getTextureRect();
 	SetPosition(float(sizeOfSprite.width)*this->pixelsPositon.x, float(sizeOfSprite.height)*this->pixelsPositon.y);
-	this->actualSprite->setPosition(this->GetPixelsPosition());
+	if (actualSprite != nullptr)
+	{
+		this->actualSprite->setPosition(this->GetPixelsPosition());
+	}
 }
