@@ -183,6 +183,7 @@
     <ClCompile Include="Dynamic_Object.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heart.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PickableObject.cpp" />
     <ClCompile Include="Player.cpp" />
