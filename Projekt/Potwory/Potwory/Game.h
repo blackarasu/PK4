@@ -16,6 +16,7 @@
 #include"Small_Monster.h"
 #include"Sword.h"
 #include"Wall.h"
+#include"Interface.h"
 class Game
 {
 public:
@@ -44,6 +45,8 @@ private:
 	//std::vector<Monster*> monsters;
 	std::vector<Pickable*> pickableObjects; //vector for Pickable(Object)
 	std::vector<sf::Texture*> textures; //vector for textures
+	std::shared_ptr<Score> score;
+	std::unique_ptr<GUI> ui;
 //methods
 	void SaveToLogFile(const std::string &logFileName, const std::string &message);
 	template <class T>

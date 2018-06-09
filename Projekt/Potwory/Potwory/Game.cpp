@@ -10,6 +10,16 @@ Game::Game()
 	objects.push_back(new Heart(2.f, 3.f, *(textures[HEART])));
 	objects.push_back(new Wall(4.f, 5.f, *(textures[WALL])));
 	pickableObjects.push_back(new Sword(10.5f, 2.f, *(textures[SWORD])));
+	score = std::make_shared<Score>();
+	try
+	{
+		ui = std::make_unique<GUI>(window, player, score);
+	}
+	catch (std::string exception)
+	{
+		std::cout << exception << std::endl;
+		SaveToLogFile("FontsErrors.log", exception);
+	}
 }
 
 Game::~Game()
@@ -112,6 +122,10 @@ void Game::GameLoop()
 		//}
 		window->clear();//black screen
 	//DRAW
+		if (ui)
+		{
+			ui->DrawInterface();
+		}
 		for (auto i = 0; i < objects.size(); ++i)
 		{
 			objects[i]->DrawToWindow(window, objects[i]->GetAddressPixelsPosition());//draw all others objects
