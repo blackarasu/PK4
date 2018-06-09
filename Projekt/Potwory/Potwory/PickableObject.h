@@ -36,6 +36,7 @@ public:
 	virtual void SetAttributes(const float &damage, const float &endurance, const float &attackSpeed, const float &range)=0;
 	virtual float GetDamage()=0;//dmg dealt every attack
 	virtual float GetAttackSpeed()=0;//how many times per second you can use attack
+	virtual float GetEndurance() = 0;
 protected:
 	sf::Clock clock;
 	enum Picked { NOT_PICKED, PICKED, REVERSE };

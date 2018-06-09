@@ -80,6 +80,11 @@ float Sword::GetRange()
 	return this->range;
 }
 
+float Sword::GetEndurance()
+{
+	return this->endurance;
+}
+
 bool Sword::DoAction()
 {
 	if (clock.getElapsedTime().asSeconds() > (1 / this->attackSpeed))

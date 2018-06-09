@@ -22,6 +22,7 @@ public:
 	float GetDamage() override;//dmg dealt every attack
 	float GetAttackSpeed() override;//how many times per second you can use attack
 	float GetRange() override;//Range in pixels
+	float GetEndurance() override;
 //methods
 	bool DoAction() override;
 	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
