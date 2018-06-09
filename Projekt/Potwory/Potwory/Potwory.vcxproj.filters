@@ -85,7 +85,7 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Interface.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
+      <Filter>Pliki nagłówkowe\Done\Controlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
