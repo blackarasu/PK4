@@ -10,6 +10,7 @@ Game::Game()
 	objects.push_back(new Heart(2.f, 3.f, *(textures[HEART])));
 	objects.push_back(new Wall(4.f, 5.f, *(textures[WALL])));
 	pickableObjects.push_back(new Sword(10.5f, 2.f, *(textures[SWORD])));
+	pickableObjects.push_back(new Sword(20.5f, 2.f, *(textures[SWORD])));
 	score = std::make_shared<Score>();
 	try
 	{

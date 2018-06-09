@@ -42,7 +42,7 @@ private:
 	sf::RenderWindow *window; //pointer to window (probably will be moved to Console but who knows)
 	std::vector<Object*> objects; //vector for objects
 	std::shared_ptr<Player>player;
-	//std::vector<Monster*> monsters;
+	std::vector<Monster*> monsters;
 	std::vector<Pickable*> pickableObjects; //vector for Pickable(Object)
 	std::vector<sf::Texture*> textures; //vector for textures
 	std::shared_ptr<Score> score;
@@ -61,9 +61,12 @@ inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic
 	{
 		if (pickableObjects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
 		{
-			dynamicObject->Pick(pickableObjects[i]);
-			pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());
-			pickableObjects.erase(pickableObjects.begin() + i);//get rid off picked item from vector (it stills exists);
+			if (dynamicObject->GetItem() == nullptr)
+			{
+				dynamicObject->Pick(pickableObjects[i]);
+				pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());
+				pickableObjects.erase(pickableObjects.begin() + i);//get rid off picked item from vector (it stills exists);
+			}
 		}
 	}
 	for (auto i = 0; i < objects.size(); ++i)
@@ -78,11 +81,4 @@ inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic
 			objects[i]->DoAction(*(dynamicObject->GetAddressPixelsPosition()), dynamicObject->GetLastMove(), frametime, dynamicObject->GetSpeed()); //ie. walls
 		}
 	}
-	if (dynamicObject->GetID() != player->GetID())//if true dynamicObject is ie. monster
-	{
-		//if monster sticks with player->
-		//monster attack
-	}
-
-	//add monsters
 }
