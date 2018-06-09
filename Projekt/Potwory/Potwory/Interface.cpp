@@ -89,7 +89,7 @@ void GUI::PrepareLine()
 {
 	this->line.setPosition(LINE_POSITION.x, LINE_POSITION.y*this->window->getSize().y);
 	this->line.setFillColor(sf::Color(128,128,128));
-	this->line.setSize(sf::Vector2f(this->window->getSize().x, 5));
+	this->line.setSize(sf::Vector2f((float)this->window->getSize().x, 5));
 }
 
 

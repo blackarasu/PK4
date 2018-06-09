@@ -9,7 +9,7 @@ const std::vector<std::string> FONTS = { "..//Fonts//cour.ttf"};
 const std::string CONST_INFORMATION[Texts::TEXTS_LENGTH] = { "HP: ","WEAPON: ","SCORE: " };
 enum Position{X,Y};
 const float POSITIONS_PERCENT[][2] = { {0.008f,0.94f},{0.2f,0.94f },{0.5f,0.94f} };
-const sf::Vector2f LINE_POSITION = { 0.f,0.90157480314960629921259842519685f };
+const sf::Vector2f LINE_POSITION = { 0.f,0.92f };
 class GUI
 {
 public:
