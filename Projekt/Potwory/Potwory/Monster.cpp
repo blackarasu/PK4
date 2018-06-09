@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "Monster.h"
 
+Monster::Monster()
+{
+	damage = 10.f;
+	range = 8.f;
+	attackSpeed = 0.5f;
+}
+
 Monster::~Monster()
 {
 }
@@ -77,4 +84,8 @@ sf::FloatRect Monster::Attack()//atakowanie troche podobne do playerAttack
 		return attackRectangle;
 	}
 	return attackRectangle; //else
+}
+
+void Monster::Decide()
+{//AI action
 }
