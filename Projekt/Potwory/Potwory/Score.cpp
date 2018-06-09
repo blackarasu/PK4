@@ -7,7 +7,15 @@ Score::Score()
 	this->multiplier = 1.0;
 	this->actualScore = 0.0;
 	FillScoreBoardWith0();
-	GetScoreBoardFromFile(FILE_NAME);
+	try 
+	{
+		GetScoreBoardFromFile(FILE_NAME);
+	}
+	catch (std::string exception)
+	{
+		std::cout << exception << std::endl;
+		SaveToLogFile("ScoreErrors.log", exception);
+	}
 }
 
 Score::~Score()
@@ -166,3 +174,23 @@ void Score::SaveScoreBoardToFile(std::string fileName)
 	saveToFile.close();
 }
 
+void Score::SaveToLogFile(const std::string & logFileName, const std::string & message)
+{
+	time_t timer;
+	time(&timer);
+	std::ofstream logFile(logFileName.c_str(), std::ios_base::app);
+	if (logFile.is_open())
+	{
+		char actualTime[26];
+		ctime_s(actualTime, 26, &timer);
+		for (int i = 0; i < 26; ++i)
+		{
+			if (actualTime[i] == '\n' || actualTime[i] == '\r')
+			{
+				actualTime[i] = '\0';
+			}
+		}
+		logFile << "<" << actualTime << "> " << message << std::endl;
+	}
+	logFile.close();
+}

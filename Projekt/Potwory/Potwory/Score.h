@@ -40,4 +40,6 @@ public:
 	void SaveToScoreBoard(std::string name);
 	void GetScoreBoardFromFile(std::string fileName);
 	void SaveScoreBoardToFile(std::string fileName);
+	//inne
+	void SaveToLogFile(const std::string & logFileName, const std::string & message);
 };
