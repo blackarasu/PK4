@@ -165,6 +165,7 @@
     <ClInclude Include="Dynamic_Object.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Heart.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Large_Monster.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Dynamic_Object.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heart.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PickableObject.cpp" />
