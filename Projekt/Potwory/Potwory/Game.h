@@ -61,7 +61,7 @@ inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic
 	{
 		if (pickableObjects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
 		{
-			if (dynamicObject->GetItem() == nullptr)
+			if (dynamicObject->GetItem() == nullptr /*|| dynamicObject->GetItem()->GetEndurance()==0*/)
 			{
 				dynamicObject->Pick(pickableObjects[i]);
 				pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());

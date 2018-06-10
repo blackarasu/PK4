@@ -106,9 +106,18 @@ void Game::GameLoop()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
 			{
 				sf::FloatRect attackRectangle=player->Attack();
-				if (attackRectangle.height != 0 && attackRectangle.width != 0)
+				if (attackRectangle.height != NO_SIZE && attackRectangle.width != NO_SIZE)//you can do attack
 				{
 					////for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect) 
+				}
+				if (player->GetItem() != nullptr)
+				{
+					if (player->GetItem()->GetEndurance() == 0)//after attack)
+					{
+						delete player->GetItem();
+						Pickable *nullItem = nullptr;
+						player->Pick(nullItem);
+					}
 				}
 			}
 			if (!IsAnyKeyPressed())
