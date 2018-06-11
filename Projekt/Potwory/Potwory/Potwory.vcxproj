@@ -164,6 +164,7 @@
     <ClInclude Include="Constances.h" />
     <ClInclude Include="Dynamic_Object.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Heart.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Large_Monster.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Dynamic_Object.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heart.cpp" />

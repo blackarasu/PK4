@@ -87,6 +87,9 @@
     <ClInclude Include="Interface.h">
       <Filter>Pliki nagłówkowe\Done\Controlers</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects.h">
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -126,6 +129,9 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Interface.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
