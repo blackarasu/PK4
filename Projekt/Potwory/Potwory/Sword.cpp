@@ -17,6 +17,14 @@ Sword::Sword(const float & x, const float & y, const sf::Texture & texture) :Pic
 	this->range = GetActualSpriteAddress()->getGlobalBounds().width;
 }
 
+Sword::Sword(const float & x, const float & y, const sf::Texture & texture, const float & damage, const float & endurance, const float & attackSpeed):Pickable(x,y,"Sword",texture)
+{
+	this->damage = damage;
+	this->endurance = endurance;
+	this->attackSpeed = attackSpeed;
+	this->range = GetActualSpriteAddress()->getGlobalBounds().width;
+}
+
 Sword::Sword(const float & x, const float & y, const sf::Texture & texture, const float & damage, const float & endurance, const float & attackSpeed, const float & range) : Pickable(x, y, "Sword", texture)
 {
 	this->damage = damage;
