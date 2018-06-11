@@ -28,6 +28,7 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 		Wall* new_wall = nullptr;
 		Heart* new_heart = nullptr;
 		Sword* new_sword = nullptr;
+		Monster* new_monster = nullptr;
 		float x, y, attackSpeed, endurance, dmg;
 		unsigned int hpRecovery;
 		unsigned int chosenMap = rand() % (this->maps.size());//which map will be played
@@ -68,6 +69,7 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 					break;
 				case 'M'://Monster
 				//add monster here
+
 					break;
 				case 'H'://heart
 					hpRecovery = INITIAL_HEART_HP_RECOVERY + this->level * HEART_HP_REVOVERY_RATIO;
@@ -103,10 +105,12 @@ std::vector<std::string> Board::LoadMap(const std::string & fileName)
 			std::getline(input, line);
 			file.push_back(line);
 		}
+		input.close();
 		return file;
 	}
 	else
 	{
+		input.close();
 		return file;
 	}
 }
