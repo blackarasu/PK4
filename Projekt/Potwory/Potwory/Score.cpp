@@ -145,7 +145,7 @@ void Score::GetScoreBoardFromFile(std::string fileName)
 	}
 	else
 	{
-		std::string exception = "An error occurred. I couldnt open the file to read the data.";
+		std::string exception = "An error occurred. I couldnt open the file " + this->FILE_NAME + " to read the data.";
 		throw exception;
 	}
 	readFromFile.close();
@@ -168,7 +168,7 @@ void Score::SaveScoreBoardToFile(std::string fileName)
 	}
 	else
 	{
-		std::string exception = "An error occurred. I couldnt open the file to read the data.";
+		std::string exception = "An error occurred. I couldnt open the file "+this->FILE_NAME+" to save the data.";
 		throw exception;
 	}
 	saveToFile.close();

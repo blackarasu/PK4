@@ -14,7 +14,7 @@ struct ToScore
 class Score
 {
 private:
-	const std::string FILE_NAME = "scores.bin";
+	const std::string FILE_NAME = "..//scores//scores.bin";
 	float actualScore;
 	float multiplier;
 	ToScore scoreBoard[MAX_SCORES];
