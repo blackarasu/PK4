@@ -18,7 +18,7 @@ Board::~Board()
 
 void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>& objects, std::vector<Pickable*>& pickableObjects, std::vector<Monster*>& monsters)
 {
-	if (this->maps.size() <= NO_SIZE+BLANK_LINE)
+	if (this->maps.size() == NO_SIZE)
 	{
 		std::string exception = "There is no loaded maps my Lord!";
 		throw exception;
