@@ -30,13 +30,17 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 		Sword* new_sword = nullptr;
 		float x, y, attackSpeed, endurance, dmg;
 		unsigned int hpRecovery;
-		unsigned int chosenMap = rand() % (this->maps.size()-1);//which map will be played
+		unsigned int chosenMap = rand() % (this->maps.size());//which map will be played
+		if (chosenMap == this->maps.size())
+		{
+			--chosenMap;
+		}
 		for (auto i = 0; i < this->maps[chosenMap].size(); ++i)
 		{
-			for (auto j = 0; j < this->maps[chosenMap][i].size(); ++i)//i=y j=x
+			y = float(i);
+			for (auto j = 0; j < this->maps[chosenMap][i].size(); ++j)//i=y j=x
 			{
 				x = float(j);
-				y = float(i);
 				switch (maps[chosenMap][i][j])
 				{
 				case 'P'://player
