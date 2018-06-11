@@ -28,6 +28,7 @@ public:
 //setters
 	virtual void SetSprites(const sf::Texture &texture)override; //Set 9 sprites from texture and it makes Rectangle from SPRITES_POSITION
 	void SetHP(const int &hp);
+	void SetSpeed(const sf::Vector2f &speed);
 	template <class T>
 	void Pick(T* item);//Use only derivatives of the Pickable
 //getters

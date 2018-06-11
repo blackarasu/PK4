@@ -57,6 +57,11 @@ void Dynamic::SetHP(const int & hp)
 	this->hp = hp;
 }
 
+void Dynamic::SetSpeed(const sf::Vector2f & speed)
+{
+	this->speed = speed;
+}
+
 int Dynamic::GetHP()
 {
 	return this->hp;
