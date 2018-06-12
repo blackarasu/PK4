@@ -19,6 +19,6 @@ private:
 	unsigned int level;
 	std::vector<std::vector<std::string>> maps;
 //methods
-	std::vector<std::string> LoadMap(const std::string &fileName);
+	bool LoadMap(const std::string &fileName);
 	void LoadMaps();
 };

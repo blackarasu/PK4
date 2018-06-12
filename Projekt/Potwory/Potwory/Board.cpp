@@ -93,7 +93,7 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 	}
 }
 
-std::vector<std::string> Board::LoadMap(const std::string & fileName)
+bool Board::LoadMap(const std::string & fileName)
 {
 	std::ifstream input(fileName.c_str());
 	std::vector<std::string> file;
@@ -105,32 +105,23 @@ std::vector<std::string> Board::LoadMap(const std::string & fileName)
 			std::getline(input, line);
 			file.push_back(line);
 		}
-		input.close();
-		return file;
+		if (file.size() > NO_SIZE + BLANK_LINE)
+		{
+			this->maps.push_back(file);
+			return true;
+		}
 	}
-	else
-	{
-		input.close();
-		return file;
-	}
+	input.close();
+	return false;
 }
 
 void Board::LoadMaps()
 {
 	std::vector<std::string> tmp;
 	unsigned int levelMap = 1;
-	do
+	while (LoadMap(this->FILE_NAME + std::to_string(levelMap) + ".lvl"))
 	{
-		tmp = LoadMap(this->FILE_NAME+std::to_string(levelMap) + ".lvl");
-		if (tmp.size() > NO_SIZE + BLANK_LINE)
-		{
-			this->maps.push_back(tmp);
-			++levelMap;
-		}
-		else
-		{
-			break;
-		}
-	} while(tmp.size()!=NO_SIZE);
+		++levelMap;
+	}
 }
 
