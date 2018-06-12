@@ -59,6 +59,8 @@ template<class T>
 inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic 
 {
 	sf::FloatRect objectRectangle = dynamicObject->GetActualSpriteAddress()->getGlobalBounds();
+	--objectRectangle.height;
+	--objectRectangle.width;
 	for (auto i = 0; i < pickableObjects.size(); ++i)//items
 	{
 		if (pickableObjects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
@@ -69,6 +71,7 @@ inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic
 				pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());
 				pickableObjects.erase(pickableObjects.begin() + i);//get rid off picked item from vector (it stills exists);
 			}
+			break;
 		}
 	}
 	for (auto i = 0; i < objects.size(); ++i)
@@ -81,6 +84,7 @@ inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic
 				objects.erase(objects.begin() + i);
 			}
 			objects[i]->DoAction(*(dynamicObject->GetAddressPixelsPosition()), dynamicObject->GetLastMove(), frametime, dynamicObject->GetSpeed()); //ie. walls
+			break;//small chance to hit more than 1 object in this game
 		}
 	}
 }
