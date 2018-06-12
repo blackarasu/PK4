@@ -24,7 +24,7 @@ const float SWORD_END_RATIO = 0.1f;
 const float INITIAL_SWORD_AS = 1.f;
 const float SWORD_AS_RATIO = 0.1f;
 const int INITIAL_PLAYER_HP = 100;
-const sf::Vector2f INITIAL_PLAYER_SPEED{ 200.f,200.f };
+const sf::Vector2f INITIAL_PLAYER_SPEED{ 125.f, 125.f };
 const float PLAYER_SPEED_RATIO = 0.52f;
 const sf::Vector2f MAX_PLAYER_SPEED{ 450.f,450.f };
 const unsigned int INITIAL_HEART_HP_RECOVERY = 10;
