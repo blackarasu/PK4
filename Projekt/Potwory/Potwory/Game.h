@@ -51,6 +51,7 @@ private:
 	std::unique_ptr<Board> board;
 //methods
 	void SaveToLogFile(const std::string &logFileName, const std::string &message);
+	inline void CatchAttackKey();
 	template <class T>
 	void CheckIntersection(T dynamicObject);
 };

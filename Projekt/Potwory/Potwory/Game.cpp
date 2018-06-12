@@ -115,45 +115,7 @@ void Game::GameLoop()
 				window->close();
 			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
-		{
-			sf::FloatRect attackRectangle = player->Attack();
-			if (attackRectangle.height != NO_SIZE && attackRectangle.width != NO_SIZE)//you can do attack
-			{
-				/*for (auto i = 0; i < objects.size(); ++i)
-				{
-				if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
-				{
-				delete objects[i];
-				objects.erase(objects.begin() + i);
-				break;
-				}
-				}*/
-				for (auto i = 0; i < monsters.size(); ++i)
-				{
-					if (monsters[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
-					{
-						monsters[i]->DoDamage(player->GetItem()->GetDamage());
-						if (monsters[i]->GetHP() <= DEAD)
-						{
-							delete monsters[i];
-							monsters.erase(monsters.begin() + i);
-						}
-						//break; it would be too hard for normal human being
-					}
-				}
-				////for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect) 
-			}
-			if (player->GetItem() != nullptr)
-			{
-				if (player->GetItem()->GetEndurance() == 0)//after attack -> after attack animation to be more precisely
-				{
-					delete player->GetItem();
-					Pickable *nullItem = nullptr;
-					player->Pick(nullItem);
-				}
-			}
-		}
+		CatchAttackKey();
 		player->Move(frametime);
 		/*if (!IsAnyKeyPressed())
 		{
@@ -216,6 +178,48 @@ void Game::SaveToLogFile(const std::string & logFileName, const std::string & me
 		logFile << "<" << actualTime << "> " << message << std::endl;
 	}
 	logFile.close();
+}
+
+inline void Game::CatchAttackKey()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	{
+		sf::FloatRect attackRectangle = player->Attack();
+		if (attackRectangle.height != NO_SIZE && attackRectangle.width != NO_SIZE)//you can do attack
+		{
+			/*for (auto i = 0; i < objects.size(); ++i)
+			{
+			if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
+			{
+			delete objects[i];
+			objects.erase(objects.begin() + i);
+			break;
+			}
+			}*/
+			for (auto i = 0; i < monsters.size(); ++i)
+			{
+				if (monsters[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
+				{
+					monsters[i]->DoDamage(player->GetItem()->GetDamage());
+					if (monsters[i]->GetHP() <= DEAD)
+					{
+						delete monsters[i];
+						monsters.erase(monsters.begin() + i);
+					}
+					//break; it would be too hard for normal human being
+				}
+			}
+		}
+		if (player->GetItem() != nullptr)
+		{
+			if (player->GetItem()->GetEndurance() == 0)//after attack -> after attack animation to be more precisely
+			{
+				delete player->GetItem();
+				Pickable *nullItem = nullptr;
+				player->Pick(nullItem);
+			}
+		}
+	}
 }
 
 
