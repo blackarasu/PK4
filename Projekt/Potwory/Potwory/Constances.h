@@ -12,6 +12,7 @@ const std::vector<std::string> fileLocations = {
 const sf::VideoMode DEFAULT_SIZE_VIDEO = { 1024,768 };
 enum Direction:unsigned int{ RIGHT, DOWN, UP, LEFT };
 const int OPPOSITE = -1;
+const int DEAD = 0; //no HP
 const unsigned int NO_SIZE = 0;
 const unsigned int BLANK_LINE = 1;
 const float HALF = 0.5f;

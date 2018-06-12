@@ -120,15 +120,19 @@ void Game::GameLoop()
 				sf::FloatRect attackRectangle=player->Attack();
 				if (attackRectangle.height != NO_SIZE && attackRectangle.width != NO_SIZE)//you can do attack
 				{
-					/*for (auto i = 0; i < objects.size(); ++i)
+					for (auto i = 0; i < monsters.size(); ++i)
 					{
-						if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
+						if (monsters[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
 						{
-							delete objects[i];
-							objects.erase(objects.begin() + i);
-							break;
+							monsters[i]->DoDamage(player->GetItem()->GetDamage());
+							if (monsters[i]->GetHP() <= DEAD)
+							{
+								delete monsters[i];
+								monsters.erase(monsters.begin() + i);
+							}
+							//break; it would be too hard for normal human being
 						}
-					}*/
+					}
 					////for loop for all monsters (check if they intersects attackRectangle) (intersects returns true if rect intersects over other rect) 
 				}
 				if (player->GetItem() != nullptr)
