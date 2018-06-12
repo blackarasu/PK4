@@ -60,32 +60,35 @@ template<class T>
 inline void Game::CheckIntersection(T dynamicObject)//only derivates of Dynamic 
 {
 	sf::FloatRect objectRectangle = dynamicObject->GetActualSpriteAddress()->getGlobalBounds();
-	--objectRectangle.height;
-	--objectRectangle.width;
-	for (auto i = 0; i < pickableObjects.size(); ++i)//items
+	sf::Vector2f dynamicObjectPosition = dynamicObject->GetPixelsPosition();
+	objectRectangle.left = dynamicObjectPosition.x;//fixing Rectangle
+	objectRectangle.top = dynamicObjectPosition.y;//fixing Rectangle
+	--objectRectangle.height;//to fit into hole between two walls
+	--objectRectangle.width;//to fit into hole between two walls
+	for (auto i = 0; i < this->objects.size(); ++i)
 	{
-		if (pickableObjects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
+		if (this->objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
+		{
+			this->objects[i]->DoAction(*(dynamicObject->GetAddressPixelsPosition()), dynamicObject->GetLastMove(), this->frametime, dynamicObject->GetSpeed()); //ie. walls
+			if (this->objects[i]->DoAction(*(dynamicObject->GetAddressHP())))//ie. heart
+			{
+				delete this->objects[i];
+				this->objects.erase(objects.begin() + i);
+			}
+			break;//small chance to hit more than 1 object at the same time
+		}
+	}
+	for (auto i = 0; i < this->pickableObjects.size(); ++i)//items
+	{
+		if (this->pickableObjects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
 		{
 			if (dynamicObject->GetItem() == nullptr /*|| dynamicObject->GetItem()->GetEndurance()==0*/)
 			{
 				dynamicObject->Pick(pickableObjects[i]);
-				pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());
-				pickableObjects.erase(pickableObjects.begin() + i);//get rid off picked item from vector (it stills exists);
+				this->pickableObjects[i]->PickedMe(dynamicObject->GetAddressPixelsPosition());
+				this->pickableObjects.erase(this->pickableObjects.begin() + i);//get rid off picked item from vector (it stills exists);
 			}
-			break;
-		}
-	}
-	for (auto i = 0; i < objects.size(); ++i)
-	{
-		if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(objectRectangle))
-		{
-			if (objects[i]->DoAction(*(dynamicObject->GetAddressHP())))//ie. heart
-			{
-				delete objects[i];
-				objects.erase(objects.begin() + i);
-			}
-			objects[i]->DoAction(*(dynamicObject->GetAddressPixelsPosition()), dynamicObject->GetLastMove(), frametime, dynamicObject->GetSpeed()); //ie. walls
-			break;//small chance to hit more than 1 object in this game
+			break;//small chance to hit more than 1 object at the same time
 		}
 	}
 }
