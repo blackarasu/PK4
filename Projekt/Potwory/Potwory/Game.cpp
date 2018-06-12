@@ -132,10 +132,10 @@ void Game::GameLoop()
 					}
 				}
 			}
-			if (!IsAnyKeyPressed())
+			/*if (!IsAnyKeyPressed())
 			{
 				player->NoMove();//Stay still
-			}
+			}*/
 		}
 		CheckIntersection(player);//check intersection with player
 		//for(auto i=0; i<monsters.size();++i)//check intersection for every monster

@@ -33,9 +33,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
-    </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
@@ -89,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects.h">
       <Filter>Pliki nagłówkowe\Done\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Pliki nagłówkowe\Done\Controlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
