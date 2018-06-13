@@ -135,6 +135,16 @@ void Board::PrepareForNewLevel(std::vector<Object*>& objects, std::vector<Pickab
 	pickableObjects.clear();
 }
 
+void Board::PrepareForNewLevel(std::vector<Object*>& objects, std::vector<Pickable*>& pickableObjects, std::vector<Monster*>& monsters)
+{
+	PrepareForNewLevel(objects, pickableObjects);
+	for (auto i = 0; i < monsters.size(); ++i)
+	{
+		delete monsters[i];
+	}
+	monsters.clear();
+}
+
 bool Board::LoadMap(const std::string & fileName)
 {
 	std::ifstream input(fileName.c_str());

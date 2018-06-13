@@ -31,7 +31,7 @@ const float SWORD_END_RATIO = 0.1f;
 const float INITIAL_SWORD_AS = 1.f;
 const float SWORD_AS_RATIO = 0.1f;
 //Character
-const int INITIAL_PLAYER_HP = 0;
+const int INITIAL_PLAYER_HP = 100;
 const sf::Vector2f INITIAL_PLAYER_SPEED{ 125.f, 125.f };
 const float PLAYER_SPEED_RATIO = 0.52f;
 const sf::Vector2f MAX_PLAYER_SPEED{ 450.f,450.f };
@@ -47,3 +47,5 @@ const int INITIAL_MONSTER_HP = 50;
 const float MONSTER_HP_RATIO = 0.1f;
 //text
 const char BACKSPACE = '\b';
+//MonsterType
+enum Monsters: unsigned int{NORMAL=1};

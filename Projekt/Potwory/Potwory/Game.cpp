@@ -103,10 +103,20 @@ void Game::GameLoop()
 {
 	while (window->isOpen())
 	{
-		/*if (player->GetHP() <= 0)
-		{
-			//endGame ->saveScore,ShowScores and waits for button to restart game with other random map
-		}*/
+		if (player->GetHP() <= 0)
+		{//endGame ->saveScore,ShowScores and waits for button to restart game with other random map
+			score->EndGameScreen(window, &event, ui->GetFont());
+			score->ResetScore();
+			board->PrepareForNewLevel(objects, pickableObjects, monsters);
+			board->ResetLevel();
+			if (!player.unique())
+			{
+				ui->ResetPlayerPointer();
+			}
+			player.reset();
+			board->GenerateLevel(player,objects,pickableObjects,monsters);
+			ui->setPlayer(player);
+		}
 		frametime = clock.restart().asSeconds();
 		while (window->pollEvent(event))
 		{
@@ -116,12 +126,15 @@ void Game::GameLoop()
 			}
 		}
 		CatchAttackKey();
-		player->Move(frametime);
-		/*if (!IsAnyKeyPressed())
+		if (player != nullptr)
 		{
+			player->Move(frametime);
+			/*if (!IsAnyKeyPressed())
+			{
 			player->NoMove();//Stay still
-		}*/
-		CheckIntersection(player);//check intersection with player
+			}*/
+			CheckIntersection(player);//check intersection with player
+		}
 		for (auto i = 0; i < monsters.size(); ++i)//check intersection for every monster
 		{
 			monsters[i]->Decide();//AI
@@ -145,10 +158,13 @@ void Game::GameLoop()
 		{
 			monsters[i]->DrawToWindow(window, monsters[i]->GetAddressPixelsPosition());
 		}
-		player->DrawToWindow(window, player->GetAddressPixelsPosition());//draw player to window
-		if (player->GetItem() != nullptr)
+		if (player != nullptr)
 		{
-			player->GetItem()->DrawPickableObject(window, player->GetActualSpriteAddress()->getGlobalBounds(), player->GetLastMove());//draw pickableObject on player
+			player->DrawToWindow(window, player->GetAddressPixelsPosition());//draw player to window
+			if (player->GetItem() != nullptr)
+			{
+				player->GetItem()->DrawPickableObject(window, player->GetActualSpriteAddress()->getGlobalBounds(), player->GetLastMove());//draw pickableObject on player
+			}
 		}
 		window->display();
 		if (monsters.size() == NO_SIZE)//level finished
@@ -214,6 +230,7 @@ inline void Game::CatchAttackKey()
 					monsters[i]->TakeDamage(player->GetItem()->GetDamage());
 					if (monsters[i]->GetHP() <= DEAD)
 					{
+						score->ScoreUp(board->GetLevel(), Monsters::NORMAL);
 						delete monsters[i];
 						monsters.erase(monsters.begin() + i);
 					}

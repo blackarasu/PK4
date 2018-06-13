@@ -18,8 +18,11 @@ public:
 	~GUI();
 //getters
 	sf::Font GetFont();
+//setters
+	void setPlayer(std::shared_ptr<Player> player);
 //methods
 	void LoadFont(const std::string &fileName);
+	void ResetPlayerPointer();
 	void DrawInterface();
 private:
 //fields

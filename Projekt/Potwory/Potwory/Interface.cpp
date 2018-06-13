@@ -25,6 +25,11 @@ sf::Font GUI::GetFont()
 	return this->font;
 }
 
+void GUI::setPlayer(std::shared_ptr<Player> player)
+{
+	this->player = player;
+}
+
 void GUI::LoadFont(const std::string & fileName)
 {
 	if (!font.loadFromFile(fileName))
@@ -37,6 +42,11 @@ void GUI::LoadFont(const std::string & fileName)
 		std::cout << "Font " << fileName << " has been loaded successfully" << std::endl;
 		SetFontToInformations();
 	}
+}
+
+void GUI::ResetPlayerPointer()
+{
+	this->player.reset();
 }
 
 void GUI::DrawInterface()
@@ -70,7 +80,10 @@ void GUI::SetPositions()
 
 void GUI::PrepareHP()
 {
-	informations[Texts::HP].setString(CONST_INFORMATION[Texts::HP] + std::to_string(this->player->GetHP()));
+	if (this->player != nullptr)
+	{
+		informations[Texts::HP].setString(CONST_INFORMATION[Texts::HP] + std::to_string(this->player->GetHP()));
+	}
 }
 
 void GUI::PrepareScore()
@@ -80,13 +93,16 @@ void GUI::PrepareScore()
 
 void GUI::PrepareWeapon()
 {
-	if (player->GetItem() == nullptr)
+	if (player != nullptr)
 	{
-		informations[Texts::WEAPON].setString(CONST_INFORMATION[Texts::WEAPON] + "NONE");
-	}
-	else
-	{
-		informations[Texts::WEAPON].setString(CONST_INFORMATION[Texts::WEAPON] + player->GetItem()->GetID()+" "+ std::to_string(int(player->GetItem()->GetEndurance())));
+		if (player->GetItem() == nullptr)
+		{
+			informations[Texts::WEAPON].setString(CONST_INFORMATION[Texts::WEAPON] + "NONE");
+		}
+		else
+		{
+			informations[Texts::WEAPON].setString(CONST_INFORMATION[Texts::WEAPON] + player->GetItem()->GetID() + " " + std::to_string(int(player->GetItem()->GetEndurance())));
+		}
 	}
 }
 

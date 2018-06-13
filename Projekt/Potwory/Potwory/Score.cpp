@@ -7,6 +7,7 @@ Score::Score()
 {
 	this->multiplier = 1.0;
 	this->actualScore = 0.0;
+	this->namePattern=new std::regex(("[A-Za-z]+"));
 	FillScoreBoardWith0();
 	try 
 	{
@@ -112,6 +113,133 @@ void Score::ScoreUp(const int level,const unsigned int monsterType)
 	this->actualScore += this->multiplier * level * monsterType * this->INITIAL_MONSTER_KILL;
 }
 
+void Score::TypeYourName(sf::RenderWindow * window, sf::Event * event, const sf::Font &font)
+{
+	sf::String str = this->name;
+	sf::Text header("YOU DIED!", font,42);
+	sf::Vector2f forOrigin{ 0.f,0.f };
+	forOrigin.x = header.getGlobalBounds().width*HALF;
+	header.setOrigin(forOrigin);
+	header.setPosition(window->getSize().x*this->HEADER_POSITION.x, window->getSize().y*this->HEADER_POSITION.y);
+	sf::Text type("Type your name: ", font);
+	type.setPosition(window->getSize().x*(this->HEADER_POSITION.x - 0.4f),header.getPosition().y+100.f);
+	sf::Text helper("Press ENTER to continue!", font);
+	forOrigin.x = helper.getGlobalBounds().width*HALF;
+	helper.setOrigin(forOrigin);
+	helper.setPosition(window->getSize().x*this->HEADER_POSITION.x, window->getSize().y*(float(ONE) - this->HEADER_POSITION.y));
+	sf::Text error("", font);
+	const sf::String ERROR_MESSAGE = "Please use only LETTERS in your NAME";
+	error.setFillColor(sf::Color::Red);
+	error.setPosition(type.getPosition().x, type.getPosition().y + 50.f);
+	sf::Text name(str,font);
+	name.setPosition(type.getPosition().x+type.getGlobalBounds().width, type.getPosition().y);
+	while (window->isOpen())
+	{
+		while (window->pollEvent(*event))
+		{
+			switch (event->type)
+			{
+			case sf::Event::Closed:
+				window->close();
+				break;
+			case sf::Event::TextEntered:
+				// Handle ASCII characters only
+				if (event->text.unicode < 128)
+				{
+					if (event->text.unicode == '\n' || event->text.unicode == '\r')
+					{
+						if (std::regex_match(str.toAnsiString(), *(this->namePattern)))
+						{
+							this->name = str;
+							return;
+						}
+						else
+						{
+							error.setString(ERROR_MESSAGE);
+						}
+					}
+					else if (event->text.unicode == BACKSPACE)
+					{
+						error.setString("");
+						if (!str.isEmpty())
+						{
+							str.erase(str.getSize() - ONE);
+							name.setString(str);
+						}
+					}
+					else
+					{
+						str += static_cast<char>(event->text.unicode);
+						name.setString(str);
+					}
+				}
+				break;
+			}
+		}
+		window->clear();
+		window->draw(header);
+		window->draw(type);
+		window->draw(error);
+		window->draw(name);
+		window->draw(helper);
+		window->display();
+	}
+}
+
+void Score::ShowScoreBoard(sf::RenderWindow * window, sf::Event * event, const sf::Font & font)
+{
+	sf::Text header("TOP 10:", font, 42);
+	sf::Vector2f forOrigin{ 0.f,0.f };
+	forOrigin.x = header.getGlobalBounds().width*HALF;
+	header.setOrigin(forOrigin);
+	header.setPosition(window->getSize().x*this->HEADER_POSITION.x, window->getSize().y*this->HEADER_POSITION.y);
+	sf::Text helper("Press ENTER to continue!", font);
+	forOrigin.x = helper.getGlobalBounds().width*HALF;
+	helper.setOrigin(forOrigin);
+	helper.setPosition(window->getSize().x*this->HEADER_POSITION.x, window->getSize().y*(float(ONE) - this->HEADER_POSITION.y));
+	sf::Text scoreboard("", font);
+	sf::String forScoreboard;
+	scoreboard.setPosition(window->getSize().x*(this->HEADER_POSITION.x - 0.2f),header.getPosition().y+75.f);
+	for (auto i = 0; i < MAX_SCORES; ++i)
+	{
+		forScoreboard += std::to_string(i + ONE) + ". " + GetNameAndScoreFromScoreBoard(i) + "\n";
+	}
+	scoreboard.setString(forScoreboard);
+	while (window->isOpen())
+	{
+		while (window->pollEvent(*event))
+		{
+			switch (event->type)
+			{
+			case sf::Event::Closed:
+				window->close();
+				break;
+			case sf::Event::KeyPressed:
+				if (event->key.code == sf::Keyboard::Enter)
+				{
+					return;
+				}
+			}
+		}
+		window->clear();
+		window->draw(header);
+		window->draw(scoreboard);
+		window->draw(helper);
+		window->display();
+	}
+}
+
+void Score::EndGameScreen(sf::RenderWindow * window, sf::Event * event,const sf::Font &font)
+{
+	TypeYourName(window, event, font);
+	if (CheckIfNewScoreIsHigherThanTheLastOne())
+	{
+		SaveToScoreBoard();
+		SaveScoreBoardToFile();
+	}
+	ShowScoreBoard(window, event, font);
+}
+
 void Score::FillScoreBoardWith0()
 {
 	for (auto i = 0; i < MAX_SCORES; ++i)
@@ -130,9 +258,9 @@ bool Score::CheckIfNewScoreIsHigherThanTheLastOne()
 	return false;
 }
 
-void Score::SaveToScoreBoard(const std::string &name)
+void Score::SaveToScoreBoard()
 {
-	this->scoreBoard[MAX_SCORES - ONE].name = name;
+	this->scoreBoard[MAX_SCORES - ONE].name = this->name;
 	this->scoreBoard[MAX_SCORES - ONE].score = actualScore;
 	std::sort(this->scoreBoard, this->scoreBoard + MAX_SCORES, [](ToScore a, ToScore b) {return a.score > b.score; });
 }
