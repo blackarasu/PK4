@@ -15,9 +15,12 @@ class Score
 {
 private:
 	const std::string FILE_NAME = "..//scores//scores.bin";
+	const unsigned int HIGHEST_SCORE = 0;
+	const unsigned int INITIAL_MONSTER_KILL = 100;//score for normal monster / small
 	float actualScore;
 	float multiplier;
 	ToScore scoreBoard[MAX_SCORES];
+	std::string name;
 public:
 	Score();
 	~Score();
@@ -27,19 +30,24 @@ public:
 	float GetMultiplier();
 	float GetActualScore();
 	float GetHighestScore();
+	std::string GetName();
+	void SetName(const std::string &name);
 	std::string PrintScore();
 	void PrintScores();
-	std::string GetNameAndScoreFromScoreBoard(unsigned int position);
+	std::string GetNameAndScoreFromScoreBoard(const unsigned int position);
 	//Zmiany podczas gry i przygotowania
 	void ChangeMultiplier(int level);
 	void ResetScore();
-	void ScoreUp(int level);
+	void ScoreUp(const int level,const unsigned int monsterType); //changed for monsters/objects
+	//End-GameScreen
+	void EndGame();//end-Game-screen in sfml -> type your name, see your final score, show scoreboard with 10 first heroes and color your score if you went in scoreboard
+private:
 	void FillScoreBoardWith0();
 	//Zapis do plikow i highScores	
 	bool CheckIfNewScoreIsHigherThanTheLastOne();
-	void SaveToScoreBoard(std::string name);
-	void GetScoreBoardFromFile(std::string fileName);
-	void SaveScoreBoardToFile(std::string fileName);
+	void SaveToScoreBoard(const std::string &name);
+	void GetScoreBoardFromFile();
+	void SaveScoreBoardToFile();
 	//inne
 	void SaveToLogFile(const std::string & logFileName, const std::string & message);
 };

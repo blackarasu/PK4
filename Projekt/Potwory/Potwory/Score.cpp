@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <iomanip>
 #include "score.h"
+#include "Constances.h"
 
 Score::Score()
 {
@@ -9,7 +10,7 @@ Score::Score()
 	FillScoreBoardWith0();
 	try 
 	{
-		GetScoreBoardFromFile(FILE_NAME);
+		GetScoreBoardFromFile();
 	}
 	catch (std::string exception)
 	{
@@ -48,17 +49,27 @@ Score & Score::operator=(Score && oldScore)
 
 float Score::GetMultiplier()
 {
-	return multiplier;
+	return this->multiplier;
 }
 
 float Score::GetActualScore()
 {
-	return actualScore;
+	return this->actualScore;
 }
 
 float Score::GetHighestScore()
 {
-	return this->scoreBoard[0].score;
+	return this->scoreBoard[this->HIGHEST_SCORE].score;
+}
+
+std::string Score::GetName()
+{
+	return this->name;
+}
+
+void Score::SetName(const std::string &name)
+{
+	this->name = name;
 }
 
 std::string Score::PrintScore()
@@ -80,25 +91,25 @@ void Score::PrintScores()
 	system("pause >nul");
 }
 
-std::string Score::GetNameAndScoreFromScoreBoard(unsigned int position)
+std::string Score::GetNameAndScoreFromScoreBoard(const unsigned int position)
 {
 	int iScore = int(scoreBoard[position].score);
 	return scoreBoard[position].name + ": " + std::to_string(iScore);
 }
 
-void Score::ChangeMultiplier(int level)
+void Score::ChangeMultiplier(const int level)
 {
 	this->multiplier = float(ONE + float(ONE - float(ONE / float(level))));
 }
 
 void Score::ResetScore()
 {
-	actualScore = 0;
+	this->actualScore = 0;
 }
 
-void Score::ScoreUp(int level)
+void Score::ScoreUp(const int level,const unsigned int monsterType)
 {
-	this->actualScore += multiplier * level;
+	this->actualScore += this->multiplier * level * monsterType * this->INITIAL_MONSTER_KILL;
 }
 
 void Score::FillScoreBoardWith0()
@@ -112,31 +123,31 @@ void Score::FillScoreBoardWith0()
 
 bool Score::CheckIfNewScoreIsHigherThanTheLastOne()
 {
-	if (actualScore > scoreBoard[MAX_SCORES - ONE].score)
+	if (this->actualScore > this->scoreBoard[MAX_SCORES - ONE].score)
 	{
 		return true;
 	}
 	return false;
 }
 
-void Score::SaveToScoreBoard(std::string name)
+void Score::SaveToScoreBoard(const std::string &name)
 {
 	this->scoreBoard[MAX_SCORES - ONE].name = name;
 	this->scoreBoard[MAX_SCORES - ONE].score = actualScore;
-	std::sort(scoreBoard, scoreBoard + MAX_SCORES, [](ToScore a, ToScore b) {return a.score > b.score; });
+	std::sort(this->scoreBoard, this->scoreBoard + MAX_SCORES, [](ToScore a, ToScore b) {return a.score > b.score; });
 }
 
-void Score::GetScoreBoardFromFile(std::string fileName)
+void Score::GetScoreBoardFromFile()
 {
 	std::ifstream readFromFile;
-	readFromFile.open(fileName.c_str(), std::ios::in | std::ios::binary);
+	readFromFile.open(this->FILE_NAME.c_str(), std::ios::in | std::ios::binary);
 	unsigned int i = 0;
 	if (readFromFile.is_open())
 	{
 		while (!readFromFile.eof() && i<MAX_SCORES)
 		{
 			//readFromFile >> scoreBoard[i].name >> scoreBoard[i].score;
-			readFromFile >> scoreBoard[i].name;
+			readFromFile >> this->scoreBoard[i].name;
 			readFromFile.seekg(+1, std::ios_base::cur);
 			readFromFile.read((char*)&scoreBoard[i].score, sizeof(float));
 			++i;
@@ -151,16 +162,16 @@ void Score::GetScoreBoardFromFile(std::string fileName)
 	readFromFile.close();
 }
 
-void Score::SaveScoreBoardToFile(std::string fileName)
+void Score::SaveScoreBoardToFile()
 {
 	std::ofstream saveToFile;
-	saveToFile.open(fileName.c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
+	saveToFile.open(this->FILE_NAME.c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
 	if (saveToFile.is_open())
 	{
 		for (auto i = 0; i < MAX_SCORES; ++i)
 		{
 			//saveToFile << scoreBoard[i].name << " " << scoreBoard[i].score << std::endl;
-			saveToFile << scoreBoard[i].name << " ";
+			saveToFile << this->scoreBoard[i].name << " ";
 			saveToFile.write((char*)&scoreBoard[i].score, sizeof(float));
 		}
 		//saveToFile.write((char*)&scoreBoard, MAX_SCORES * sizeof(ToScore));
