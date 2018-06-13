@@ -41,7 +41,8 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 		Sword* new_sword = nullptr;
 		Monster* new_monster = nullptr;
 		sf::Vector2f speed;
-		float x, y, attackSpeed, endurance, dmg, hp;
+		float x, y, attackSpeed, endurance, dmg;
+		int hp;
 		unsigned int hpRecovery;
 		unsigned int chosenMap = rand() % (this->maps.size());//which map will be played
 		if (chosenMap == this->maps.size())
@@ -81,7 +82,7 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 					break;
 				case 'M'://Monster
 				//add monster here
-					hp = INITIAL_MONSTER_HP + INITIAL_MONSTER_HP * (float(this->level)*MONSTER_HP_RATIO);
+					hp = int(INITIAL_MONSTER_HP + INITIAL_MONSTER_HP * (int(this->level)*MONSTER_HP_RATIO));
 					speed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_PLAYER_SPEED : INITIAL_PLAYER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
 					if (speed.x > MAX_PLAYER_SPEED.x)
 					{

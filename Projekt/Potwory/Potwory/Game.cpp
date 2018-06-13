@@ -217,7 +217,7 @@ inline void Game::CatchAttackKey()
 						delete monsters[i];
 						monsters.erase(monsters.begin() + i);
 					}
-					//break; it would be too hard for normal human being
+				    //break;it would be too hard for normal human being
 				}
 			}
 		}

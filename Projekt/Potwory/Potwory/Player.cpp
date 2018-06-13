@@ -19,11 +19,6 @@ bool Player::DoAction()
 	if (this->item != nullptr)
 	{
 		bool action = this->item->DoAction();
-		if (!action)
-		{
-			delete this->item;
-			this->item = nullptr;
-		}
 		return action;
 	}
 	return false;
