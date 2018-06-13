@@ -44,7 +44,7 @@ public:
 	void MoveRight(float frameTime);
 	void NoMove();//Set STOP Sprite
 	virtual sf::FloatRect Attack()=0; //function which returns AttackRectangle 
-	virtual void DoDamage(const float &damage);
+	void TakeDamage(const float &damage);
 protected:
 	Pickable * item; //address to picked item if you picked one
 	sf::Sprite sprites[DIRECTIONS][ANIMATION_FRAMES];//sprites for "animation"

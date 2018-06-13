@@ -178,7 +178,7 @@ void Dynamic::NoMove()
 	SetActualSprite(&(this->sprites[this->lastMove][Frame::STOP]));
 }
 
-void Dynamic::DoDamage(const float & damage)
+void Dynamic::TakeDamage(const float & damage)
 {
-	this->hp -= int(ceil(damage));
+	this->hp -= (int)damage;
 }
