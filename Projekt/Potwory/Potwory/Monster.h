@@ -4,11 +4,19 @@
 #include"stdafx.h"
 #include"Dynamic_Object.h"
 
+const sf::IntRect MONSTER_SPRITES_POSITION[DIRECTIONS][ANIMATION_FRAMES] = {
+	sf::IntRect({ 3,1,30,54 }),sf::IntRect({ 52,1,30,54 }),sf::IntRect({ 102,1,30,54 }),
+	sf::IntRect({ 1,57,43,54 }),sf::IntRect({ 50,57,43,54 }),sf::IntRect({ 98,57,43,54 }),
+	sf::IntRect({ 1,113,43,54 }),sf::IntRect({ 50,113,43,54 }),sf::IntRect({ 98,113,43,54 }),
+	sf::IntRect({ 9,170,30,54 }),sf::IntRect({ 54,170,30,54 }),sf::IntRect({ 102,170,30,54 })
+};
+
 class Monster:public Dynamic
 {
 public:
 //Constructors destructors
 	Monster();
+	Monster(const float &x, const float &y, const sf::Texture &texture, const int &hp, const sf::Vector2f &speed, const float &damage, const float attackSpeed);
 	~Monster();
 //setters
 	void SetDamage(const float &damage);
@@ -23,7 +31,11 @@ public:
 	float *GetAddressAttackSpeed();//good for referance argument
 //methods
 	virtual sf::FloatRect Attack() override;
+	bool DoAction()override { return false; }//action for pickable (wearable)
+	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
+	bool DoAction(int &hp) override { return false; }
 //virtual
+	virtual void SetSprites(const sf::Texture &texture)override;
 	virtual void Decide(); //Monster AI
 private:
 //Fields

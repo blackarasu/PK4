@@ -8,6 +8,15 @@ Monster::Monster()
 	attackSpeed = 0.5f;
 }
 
+Monster::Monster(const float & x, const float & y, const sf::Texture & texture, const int & hp, const sf::Vector2f & speed, const float & damage, const float attackSpeed):Dynamic(x,y,"Monster",hp,speed)
+{
+	this->damage = damage;
+	this->attackSpeed = attackSpeed;
+	SetSprites(texture);
+	FixPosition();
+	this->range = GetActualSpriteAddress()->getGlobalBounds().width;
+}
+
 Monster::~Monster()
 {
 }
@@ -84,6 +93,19 @@ sf::FloatRect Monster::Attack()//atakowanie troche podobne do playerAttack
 		return attackRectangle;
 	}
 	return attackRectangle; //else
+}
+
+void Monster::SetSprites(const sf::Texture & texture)
+{
+	for (auto i = 0; i < DIRECTIONS; ++i)
+	{
+		for (auto j = 0; j < ANIMATION_FRAMES; ++j)
+		{
+			this->sprites[i][j] = sf::Sprite(texture, MONSTER_SPRITES_POSITION[i][j]);
+			this->sprites[i][j].setScale(((float)PIXELS_TO_GET/MONSTER_SPRITES_POSITION[i][j].width),((float)PIXELS_TO_GET/MONSTER_SPRITES_POSITION[i][j].height));
+		}
+	}
+	SetActualSprite(&(this->sprites[Direction::DOWN][Frame::STOP]));
 }
 
 void Monster::Decide()
