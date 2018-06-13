@@ -40,7 +40,8 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 		Heart* new_heart = nullptr;
 		Sword* new_sword = nullptr;
 		Monster* new_monster = nullptr;
-		float x, y, attackSpeed, endurance, dmg;
+		sf::Vector2f speed;
+		float x, y, attackSpeed, endurance, dmg, hp;
 		unsigned int hpRecovery;
 		unsigned int chosenMap = rand() % (this->maps.size());//which map will be played
 		if (chosenMap == this->maps.size())
@@ -61,12 +62,12 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 						player->NoMove();
 						player->SetPosition(x, y);
 						player->FixPosition();
-						sf::Vector2f playerSpeed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_PLAYER_SPEED : INITIAL_PLAYER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
-						if (playerSpeed.x > MAX_PLAYER_SPEED.x)
+						speed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_PLAYER_SPEED : INITIAL_PLAYER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
+						if (speed.x > MAX_PLAYER_SPEED.x)
 						{
-							playerSpeed = MAX_PLAYER_SPEED;
+							speed = MAX_PLAYER_SPEED;
 						}
-						player->SetSpeed(playerSpeed);
+						player->SetSpeed(speed);
 					}
 					else
 					{
@@ -80,7 +81,17 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 					break;
 				case 'M'://Monster
 				//add monster here
-
+					hp = INITIAL_MONSTER_HP + INITIAL_MONSTER_HP * (float(this->level)*MONSTER_HP_RATIO);
+					speed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_PLAYER_SPEED : INITIAL_PLAYER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
+					if (speed.x > MAX_PLAYER_SPEED.x)
+					{
+						speed = MAX_PLAYER_SPEED;
+					}
+					dmg = INITIAL_MONSTER_DMG + INITIAL_MONSTER_DMG * (float(this->level)*MONSTER_DMG_RATIO);
+					attackSpeed = INITIAL_MONSTER_AS + INITIAL_MONSTER_AS * (float(this->level)*MONSTER_AS_RATIO);
+					new_monster = new Monster(x, y, *textures[MONSTER], hp, speed, dmg, attackSpeed);
+					monsters.push_back(new_monster);
+					new_monster = nullptr;
 					break;
 				case 'H'://heart
 					hpRecovery = INITIAL_HEART_HP_RECOVERY + this->level * HEART_HP_REVOVERY_RATIO;
