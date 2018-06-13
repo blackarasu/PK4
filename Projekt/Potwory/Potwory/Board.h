@@ -13,6 +13,7 @@ public:
 //getters
 	unsigned int GetLevel();
 //methods
+	void ResetLevel();
 	void NextLevel(std::shared_ptr<Player> &player, std::vector<Object*> &objects, std::vector<Pickable*> &pickableObjects, std::vector<Monster*> &monsters);
 	void GenerateLevel(std::shared_ptr<Player> &player,std::vector<Object*> &objects, std::vector<Pickable*> &pickableObjects,std::vector<Monster*> &monsters);
 	void PrepareForNewLevel(std::vector<Object*> &objects, std::vector<Pickable*> &pickableObjects);

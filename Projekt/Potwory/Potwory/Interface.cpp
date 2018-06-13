@@ -20,6 +20,11 @@ GUI::~GUI()
 	this->window = nullptr;
 }
 
+sf::Font GUI::GetFont()
+{
+	return this->font;
+}
+
 void GUI::LoadFont(const std::string & fileName)
 {
 	if (!font.loadFromFile(fileName))

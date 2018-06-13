@@ -21,6 +21,11 @@ unsigned int Board::GetLevel()
 	return this->level;
 }
 
+void Board::ResetLevel()
+{
+	this->level = 1;
+}
+
 void Board::NextLevel(std::shared_ptr<Player> &player, std::vector<Object*> &objects, std::vector<Pickable*> &pickableObjects, std::vector<Monster*> &monsters)
 {
 	++this->level;
