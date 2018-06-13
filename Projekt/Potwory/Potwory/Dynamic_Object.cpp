@@ -11,6 +11,12 @@ Dynamic::Dynamic():Object(0,0,"I'm nothing")
 	this->frame = Frame::STOP;
 }
 
+Dynamic::Dynamic(const float & x, const float & y, const std::string & ID, const int &hp, const sf::Vector2f &speed) :Object(x, y, ID)
+{
+	this->hp = hp;
+	this->speed = speed;
+}
+
 Dynamic::Dynamic(const float & x, const float & y, const std::string & ID, const sf::Texture & texture):Object(x,y,ID)
 {
 	SetSprites(texture);
@@ -46,7 +52,7 @@ void Dynamic::SetSprites(const sf::Texture & texture)
 		for (auto j = 0; j < ANIMATION_FRAMES; ++j)
 		{
 			this->sprites[i][j] = sf::Sprite(texture, SPRITES_POSITION[i][j]);
-			this->sprites[i][j].setScale(SCALE);
+			this->sprites[i][j].setScale(((float)PIXELS_TO_GET/SPRITES_POSITION[i][j].width), ((float)PIXELS_TO_GET / SPRITES_POSITION[i][j].height));
 		}
 	}
 	SetActualSprite(&(this->sprites[Direction::DOWN][Frame::STOP]));
