@@ -189,12 +189,13 @@ inline void Game::CatchAttackKey()
 		{
 			/*for (auto i = 0; i < objects.size(); ++i)
 			{
-			if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
-			{
-			delete objects[i];
-			objects.erase(objects.begin() + i);
-			break;
-			}
+				if (objects[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
+				{
+				delete objects[i];
+				objects.erase(objects.begin() + i);
+				score->ScoreUp(board->GetLevel(), 1);
+				break;
+				}
 			}*/
 			for (auto i = 0; i < monsters.size(); ++i)
 			{
