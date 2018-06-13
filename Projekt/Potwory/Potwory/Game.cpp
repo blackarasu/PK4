@@ -141,6 +141,10 @@ void Game::GameLoop()
 		{
 			pickableObjects[i]->DrawToWindow(window, pickableObjects[i]->GetAddressPixelsPosition());//draw all unpicked pickableObjects on window
 		}
+		for (auto i = 0; i < monsters.size(); ++i)
+		{
+			monsters[i]->DrawToWindow(window, monsters[i]->GetAddressPixelsPosition());
+		}
 		player->DrawToWindow(window, player->GetAddressPixelsPosition());//draw player to window
 		if (player->GetItem() != nullptr)
 		{
@@ -205,9 +209,9 @@ inline void Game::CatchAttackKey()
 			}*/
 			for (auto i = 0; i < monsters.size(); ++i)
 			{
-				if (monsters[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on normal objects
+				if (monsters[i]->GetActualSpriteAddress()->getGlobalBounds().intersects(attackRectangle)) //Test on monsters
 				{
-					monsters[i]->DoDamage(player->GetItem()->GetDamage());
+					monsters[i]->TakeDamage(player->GetItem()->GetDamage());
 					if (monsters[i]->GetHP() <= DEAD)
 					{
 						delete monsters[i];
