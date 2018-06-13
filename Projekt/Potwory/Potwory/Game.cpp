@@ -122,10 +122,11 @@ void Game::GameLoop()
 			player->NoMove();//Stay still
 		}*/
 		CheckIntersection(player);//check intersection with player
-		//for(auto i=0; i<monsters.size();++i)//check intersection for every monster
-		//{
-		//	CheckIntersection(monsters[i]);
-		//}
+		for (auto i = 0; i < monsters.size(); ++i)//check intersection for every monster
+		{
+			monsters[i]->Decide();//AI
+			CheckIntersection(monsters[i]); //Check if went into object and grab;
+		}
 		window->clear();//black screen
 	//DRAW
 		if (ui)
@@ -146,6 +147,11 @@ void Game::GameLoop()
 			player->GetItem()->DrawPickableObject(window, player->GetActualSpriteAddress()->getGlobalBounds(), player->GetLastMove());//draw pickableObject on player
 		}
 		window->display();
+		if (monsters.size() == NO_SIZE)//level finished
+		{
+			board->PrepareForNewLevel(objects, pickableObjects);
+			board->NextLevel(player, objects, pickableObjects, monsters);
+		}
 	}
 }
 

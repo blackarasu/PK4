@@ -115,6 +115,20 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 	}
 }
 
+void Board::PrepareForNewLevel(std::vector<Object*>& objects, std::vector<Pickable*>& pickableObjects)
+{
+	for (auto i = 0; i < objects.size(); ++i)
+	{
+		delete objects[i];
+	}
+	objects.clear();
+	for (auto i = 0; i < pickableObjects.size(); ++i)
+	{
+		delete pickableObjects[i];
+	}
+	pickableObjects.clear();
+}
+
 bool Board::LoadMap(const std::string & fileName)
 {
 	std::ifstream input(fileName.c_str());
