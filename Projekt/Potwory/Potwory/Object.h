@@ -32,6 +32,7 @@ public:
 	sf::Sprite* GetActualSpriteAddress(); //address to ActualSprite
 //Methods
 	void DrawToWindow(sf::RenderWindow *window, sf::Vector2f *position); //Draws to window Object
+	void FixPosition(); //fix postion got from map
 //virtual Methods
 	virtual bool DoAction() = 0; //good for weapon Action
 	virtual bool DoAction(int &valueToChange) = 0; //object's Action/-s operated with referenced value to change' ie. Heart
@@ -39,8 +40,6 @@ public:
 protected:
 //Fields
 	sf::Vector2f pixelsPositon; //fixed position
-//Methods
-	inline void FixPosition(); //fix postion got from map
 private:
 //Fields
 	std::string ID; //Identificator for Object

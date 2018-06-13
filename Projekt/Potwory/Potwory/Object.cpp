@@ -143,7 +143,7 @@ void Object::DrawToWindow(sf::RenderWindow * window, sf::Vector2f *position)
 	}
 }
 
-inline void Object::FixPosition()
+void Object::FixPosition()
 {
 	sf::FloatRect sizeOfSprite = this->actualSprite->getGlobalBounds();
 	SetPosition(float(sizeOfSprite.width)*this->pixelsPositon.x, float(sizeOfSprite.height)*this->pixelsPositon.y);
