@@ -16,6 +16,17 @@ Board::~Board()
 {
 }
 
+unsigned int Board::GetLevel()
+{
+	return this->level;
+}
+
+void Board::NextLevel(std::shared_ptr<Player> &player, std::vector<Object*> &objects, std::vector<Pickable*> &pickableObjects, std::vector<Monster*> &monsters)
+{
+	++this->level;
+	GenerateLevel(player, objects, pickableObjects, monsters);
+}
+
 void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>& objects, std::vector<Pickable*>& pickableObjects, std::vector<Monster*>& monsters)
 {
 	if (this->maps.size() == NO_SIZE)
@@ -48,8 +59,8 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 					if (player != nullptr)
 					{
 						player->NoMove();
-						sf::FloatRect playerSize = player->GetActualSpriteAddress()->getGlobalBounds();
-						player->SetPositionToActualSprite(x*playerSize.width, y*playerSize.height);
+						player->SetPosition(x, y);
+						player->FixPosition();
 						sf::Vector2f playerSpeed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_PLAYER_SPEED : INITIAL_PLAYER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
 						if (playerSpeed.x > MAX_PLAYER_SPEED.x)
 						{
