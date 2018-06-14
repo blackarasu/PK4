@@ -8,20 +8,23 @@ Game::Game()
 	LoadTextures();
 	player = nullptr;
 	board = std::make_unique<Board>(textures);
-	try
+	if (textures.size() != NO_SIZE)
 	{
-		board->GenerateLevel(player, objects, pickableObjects, monsters);
-	}
-	catch (std::string exception)
-	{
-		std::cout << exception << std::endl;
-		SaveToLogFile("MapsErrors.log", exception); 
-		std::cout << "Loaded default level " << std::endl;
-		player = std::make_shared<Player>(10.f, 5.f, *(this->textures[CHARACTER]), 100, sf::Vector2f{ 200.f,200.f });
-		objects.push_back(new Heart(2.f, 3.f, *(textures[HEART])));
-		objects.push_back(new Wall(4.f, 5.f, *(textures[WALL])));
-		pickableObjects.push_back(new Sword(10.5f, 2.f, *(textures[SWORD])));
-		pickableObjects.push_back(new Sword(20.5f, 2.f, *(textures[SWORD])));
+		try
+		{
+			board->GenerateLevel(player, objects, pickableObjects, monsters);
+		}
+		catch (std::string exception)
+		{
+			std::cout << exception << std::endl;
+			SaveToLogFile("MapsErrors.log", exception);
+			std::cout << "Loaded default level " << std::endl;
+			player = std::make_shared<Player>(10.f, 5.f, *(this->textures[CHARACTER]), 100, sf::Vector2f{ 200.f,200.f });
+			objects.push_back(new Heart(2.f, 3.f, *(textures[HEART])));
+			objects.push_back(new Wall(4.f, 5.f, *(textures[WALL])));
+			pickableObjects.push_back(new Sword(10.5f, 2.f, *(textures[SWORD])));
+			pickableObjects.push_back(new Sword(20.5f, 2.f, *(textures[SWORD])));
+		}
 	}
 	score = std::make_shared<Score>();
 	try
@@ -78,7 +81,8 @@ void Game::LoadTextures()
 		bool no_Error = true;
 		try
 		{
-			this->textures.push_back(LoadTexture(fileLocations[i]));
+			sf::Texture* textureToLoad = LoadTexture(fileLocations[i]);
+			this->textures.push_back(textureToLoad);
 		}
 		catch (std::string exception)
 		{
@@ -110,6 +114,10 @@ void Game::AddHeart(Heart * heart)
 
 void Game::GameLoop()
 {
+	if (textures.size() == 0)
+	{
+		window->close();
+	}
 	clock.restart();//right before game starting for the least diff
 	while (window->isOpen())
 	{
@@ -186,7 +194,16 @@ void Game::GameLoop()
 		if (monsters.size() == NO_SIZE)//level finished
 		{
 			board->PrepareForNewLevel(objects, pickableObjects);
-			board->NextLevel(player, objects, pickableObjects, monsters);
+			try
+			{
+				board->NextLevel(player, objects, pickableObjects, monsters);
+			}
+			catch (std::string exception)
+			{
+				std::cout << "Something bad happened! " << exception;
+				SaveToLogFile("OtherErrors.log", exception);
+				window->close();
+			}
 			clock.restart();
 		}
 	}

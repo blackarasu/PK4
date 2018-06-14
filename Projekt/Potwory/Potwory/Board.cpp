@@ -60,10 +60,6 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 		int hp;
 		unsigned int hpRecovery;
 		unsigned int chosenMap = rand() % (this->maps.size());//which map will be played
-		if (chosenMap == this->maps.size())
-		{
-			--chosenMap;
-		}
 		for (auto i = 0; i < this->maps[chosenMap].size(); ++i)
 		{
 			y = float(i);
