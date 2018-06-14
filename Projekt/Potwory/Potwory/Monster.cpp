@@ -136,15 +136,16 @@ void Monster::Decide(std::shared_ptr<Player> player, const std::vector<Object*>&
 	{
 		player->TakeDamage(this->damage);
 	}
+
 	unsigned int lastMove = this->GetLastMove();
 	unsigned int newMove;
 	Move(frametime, lastMove);
 	sf::Vector2f actualPosition = this->GetPixelsPosition();
 	sf::FloatRect monsterRectangle = this->GetActualSpriteAddress()->getGlobalBounds();
-	monsterRectangle.top = actualPosition.y;
-	monsterRectangle.left = actualPosition.x;
-	--monsterRectangle.width;
-	--monsterRectangle.height;
+	monsterRectangle.top = actualPosition.y; //fixing rectangle with actualPosition
+	monsterRectangle.left = actualPosition.x;//fixing rectangle with actualPosition
+	--monsterRectangle.width; //for fiting between two walls
+	--monsterRectangle.height;//for fiting between two walls
 	bool isIntersected = false;
 	for (auto i = 0; i < objects.size(); ++i)
 	{
@@ -153,7 +154,7 @@ void Monster::Decide(std::shared_ptr<Player> player, const std::vector<Object*>&
 			if (objects[i]->GetID() == "Wall")
 			{
 				isIntersected = true;
-				switch (lastMove)
+				switch (lastMove)//Reseting last Move (u cant go into wall)
 				{
 				case Direction::RIGHT:
 					MoveLeft(frametime);
