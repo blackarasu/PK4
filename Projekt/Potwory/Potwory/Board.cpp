@@ -21,6 +21,11 @@ unsigned int Board::GetLevel()
 	return this->level;
 }
 
+unsigned int * Board::GetAdressLevel()
+{
+	return &(this->level);
+}
+
 void Board::ResetLevel()
 {
 	this->level = 1;
@@ -88,7 +93,7 @@ void Board::GenerateLevel(std::shared_ptr<Player>& player, std::vector<Object*>&
 				case 'M'://Monster
 				//add monster here
 					hp = int(INITIAL_MONSTER_HP + INITIAL_MONSTER_HP * (int(this->level)*MONSTER_HP_RATIO));
-					speed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_PLAYER_SPEED : INITIAL_PLAYER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
+					speed = float(PLAYER_SPEED_RATIO*this->level)<INITIAL ? INITIAL_MONSTER_SPEED : INITIAL_MONSTER_SPEED * float(PLAYER_SPEED_RATIO*this->level);
 					if (speed.x > MAX_PLAYER_SPEED.x)
 					{
 						speed = MAX_PLAYER_SPEED;

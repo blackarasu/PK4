@@ -12,6 +12,7 @@ public:
 	~Board();
 //getters
 	unsigned int GetLevel();
+	unsigned int *GetAdressLevel();
 //methods
 	void ResetLevel();
 	void NextLevel(std::shared_ptr<Player> &player, std::vector<Object*> &objects, std::vector<Pickable*> &pickableObjects, std::vector<Monster*> &monsters);
