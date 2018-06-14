@@ -26,7 +26,7 @@ Game::Game()
 	score = std::make_shared<Score>();
 	try
 	{
-		ui = std::make_unique<GUI>(window, player, score);
+		ui = std::make_unique<GUI>(window, player, score,board->GetAdressLevel());
 	}
 	catch (std::string exception)
 	{
@@ -101,8 +101,10 @@ void Game::AddHeart(Heart * heart)
 
 void Game::GameLoop()
 {
+	clock.restart();
 	while (window->isOpen())
 	{
+		frametime = clock.restart().asSeconds();
 		if (player->GetHP() <= 0)
 		{//endGame ->saveScore,ShowScores and waits for button to restart game with other random map
 			score->EndGameScreen(window, &event, ui->GetFont());
@@ -117,7 +119,6 @@ void Game::GameLoop()
 			board->GenerateLevel(player,objects,pickableObjects,monsters);
 			ui->setPlayer(player);
 		}
-		frametime = clock.restart().asSeconds();
 		while (window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -137,7 +138,7 @@ void Game::GameLoop()
 		}
 		for (auto i = 0; i < monsters.size(); ++i)//check intersection for every monster
 		{
-			monsters[i]->Decide();//AI
+			monsters[i]->Decide(player,objects,frametime);//AI
 			CheckIntersection(monsters[i]); //Check if went into object and grab;
 		}
 		window->clear();//black screen
@@ -157,6 +158,10 @@ void Game::GameLoop()
 		for (auto i = 0; i < monsters.size(); ++i)
 		{
 			monsters[i]->DrawToWindow(window, monsters[i]->GetAddressPixelsPosition());
+			if (monsters[i]->GetItem() != nullptr)
+			{
+				monsters[i]->GetItem()->DrawPickableObject(window, monsters[i]->GetActualSpriteAddress()->getGlobalBounds(), monsters[i]->GetLastMove());//draw pickableObject on monster
+			}
 		}
 		if (player != nullptr)
 		{
