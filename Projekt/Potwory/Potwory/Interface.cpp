@@ -19,6 +19,7 @@ GUI::GUI(sf::RenderWindow * window, std::shared_ptr<Player> player, std::shared_
 GUI::~GUI()
 {
 	this->window = nullptr;
+	this->level = nullptr;
 }
 
 sf::Font GUI::GetFont()
