@@ -38,7 +38,7 @@ void Player::Move(float frameTime)
 	{
 		MoveUp(frameTime);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		MoveRight(frameTime);
 	}
