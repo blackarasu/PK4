@@ -42,9 +42,6 @@
     <ClInclude Include="Menu.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
-    <ClInclude Include="Score.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
-    </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
@@ -88,6 +85,9 @@
       <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Board.h">
+      <Filter>Pliki nagłówkowe\Done\Controlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
       <Filter>Pliki nagłówkowe\Done\Controlers</Filter>
     </ClInclude>
   </ItemGroup>

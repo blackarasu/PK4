@@ -261,7 +261,7 @@ bool Score::CheckIfNewScoreIsHigherThanTheLastOne()
 void Score::SaveToScoreBoard()
 {
 	this->scoreBoard[MAX_SCORES - ONE].name = this->name;
-	this->scoreBoard[MAX_SCORES - ONE].score = actualScore;
+	this->scoreBoard[MAX_SCORES - ONE].score = this->actualScore;
 	std::sort(this->scoreBoard, this->scoreBoard + MAX_SCORES, [](ToScore a, ToScore b) {return a.score > b.score; });
 }
 
