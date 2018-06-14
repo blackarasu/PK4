@@ -5,8 +5,8 @@
 
 Score::Score()
 {
-	this->multiplier = 1.0;
-	this->actualScore = 0.0;
+	this->multiplier = 0.75f;
+	this->actualScore = 0.0f;
 	this->namePattern=new std::regex(("[A-Za-z]+"));
 	FillScoreBoardWith0();
 	try 
@@ -110,7 +110,7 @@ void Score::ResetScore()
 
 void Score::ScoreUp(const int level,const unsigned int monsterType)
 {
-	this->actualScore += this->multiplier * level * monsterType * this->INITIAL_MONSTER_KILL;
+	this->actualScore += (this->multiplier + level) * monsterType * this->INITIAL_MONSTER_KILL;
 }
 
 void Score::TypeYourName(sf::RenderWindow * window, sf::Event * event, const sf::Font &font)

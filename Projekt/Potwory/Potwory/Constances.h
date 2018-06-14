@@ -39,9 +39,10 @@ const sf::Vector2f MAX_PLAYER_SPEED{ 450.f,450.f };
 const unsigned int INITIAL_HEART_HP_RECOVERY = 10;
 const unsigned int HEART_HP_REVOVERY_RATIO = 5;
 //Monster
+const sf::Vector2f INITIAL_MONSTER_SPEED{ 75.f, 75.f };
 const float INITIAL_MONSTER_DMG = 5.f;
 const float MONSTER_DMG_RATIO = 0.35f;
-const float INITIAL_MONSTER_AS = 0.5f;
+const float INITIAL_MONSTER_AS = 0.652f;
 const float MONSTER_AS_RATIO = 0.13f;
 const int INITIAL_MONSTER_HP = 50;
 const float MONSTER_HP_RATIO = 0.1f;
