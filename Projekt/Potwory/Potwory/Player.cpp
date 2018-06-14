@@ -72,7 +72,7 @@ sf::FloatRect Player::Attack()
 			attackRectangle.top = playerPosition.y + attackRectangle.height;
 			break;
 		}
-		attackRectangle.width = range * HALF;
+		attackRectangle.width = range;
 		attackRectangle.height = range;
 		return attackRectangle;
 	}
