@@ -15,6 +15,7 @@ Dynamic::Dynamic(const float & x, const float & y, const std::string & ID, const
 {
 	this->hp = hp;
 	this->speed = speed;
+	this->lastMove = Direction::DOWN;
 }
 
 Dynamic::Dynamic(const float & x, const float & y, const std::string & ID, const sf::Texture & texture):Object(x,y,ID)
