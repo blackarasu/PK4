@@ -41,14 +41,23 @@ Game::~Game()
 	{
 		delete textures[i];
 	}
+	this->textures.clear();
 	for (auto i = 0; i < objects.size(); ++i)
 	{
 		delete objects[i];
 	}
+	this->objects.clear();
 	for (auto i = 0; i < pickableObjects.size(); ++i)
 	{
 		delete pickableObjects[i];
 	}
+	this->pickableObjects.clear();
+	for (auto i = 0; i < monsters.size(); ++i)
+	{
+		delete monsters[i];
+	}
+	monsters.clear();
+	delete this->window;
 }
 
 sf::Texture* Game::LoadTexture(const std::string & fileName)

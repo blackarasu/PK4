@@ -41,10 +41,6 @@ Sword::Sword(const sf::Texture & texture, sf::Vector2f * playerPosition, const f
 	this->range = range;
 }
 
-Sword::~Sword()
-{
-}
-
 void Sword::SetDamage(const float & damage)
 {
 	this->damage = damage;

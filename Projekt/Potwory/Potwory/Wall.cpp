@@ -9,10 +9,6 @@ Wall::Wall(const float & x, const float & y, const sf::Texture & texture) : Obje
 {
 }
 
-Wall::~Wall()
-{
-}
-
 void Wall::DoAction(sf::Vector2f & valueToChange, const unsigned int lastMove, float frametime, sf::Vector2f speed)
 {
 	switch (lastMove)

@@ -14,6 +14,11 @@ Board::Board(const std::vector<sf::Texture*> &textures):Board()
 
 Board::~Board()
 {
+	for (auto i = 0; i < textures.size(); ++i)
+	{
+		this->textures[i] = nullptr;
+	}
+	textures.clear();
 }
 
 unsigned int Board::GetLevel()

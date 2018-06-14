@@ -22,6 +22,8 @@ Score::Score()
 
 Score::~Score()
 {
+	delete this->namePattern;
+	this->namePattern = nullptr;
 }
 
 Score & Score::operator=(const Score & oldScore)

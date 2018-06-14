@@ -12,7 +12,7 @@ public:
 	Sword(const float &x, const float &y, const sf::Texture &texture, const float &damage, const float &endurance, const float &attackSpeed);
 	Sword(const float &x, const float &y, const sf::Texture &texture, const float &damage, const float &endurance, const float &attackSpeed, const float &range); //custom sword, use not fixed x,y (they are not pixels on the map but how many "swords" can be placed in this rectangle. For example if x=4 and y=5 and size of SpriteRect is 16x16 it will be placed at xpx=4*16 andd ypx=5*16)
 	Sword(const sf::Texture &texture, sf::Vector2f* playerPosition, const float &damage, const float &endurance, const float &attackSpeed, const float &range); //if you want give someone a sword from the begining
-	~Sword();
+	~Sword()=default;
 //setters
 	void SetDamage(const float &damage) override;
 	void SetEnduramce(const float &endurance) override;

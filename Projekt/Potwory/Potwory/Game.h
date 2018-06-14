@@ -18,6 +18,7 @@
 #include"Wall.h"
 #include"Interface.h"
 #include"Board.h"
+#include"C:\Program Files (x86)\Visual Leak Detector\include\vld.h"
 class Game
 {
 public:
