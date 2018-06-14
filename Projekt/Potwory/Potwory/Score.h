@@ -31,14 +31,18 @@ public:
 	Score& operator=(const Score &oldScore);
 	Score& operator=(Score &&oldScore);
 	//Koniec gry i wyswietlanie wyniku
+private:
 	float GetMultiplier();
 	float GetActualScore();
 	float GetHighestScore();
 	std::string GetName();
 	void SetName(const std::string &name);
+public:
 	std::string PrintScore();
 	void PrintScores();
+private:
 	std::string GetNameAndScoreFromScoreBoard(const unsigned int position);
+public:
 	//Zmiany podczas gry i przygotowania
 	void ChangeMultiplier(int level);
 	void ResetScore();
