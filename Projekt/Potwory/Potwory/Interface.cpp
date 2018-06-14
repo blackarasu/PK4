@@ -6,11 +6,12 @@ GUI::GUI()
 	LoadFont(FONTS[Fonts::COURIER_NEW]);
 }
 
-GUI::GUI(sf::RenderWindow * window, std::shared_ptr<Player> player, std::shared_ptr<Score> score):GUI()
+GUI::GUI(sf::RenderWindow * window, std::shared_ptr<Player> player, std::shared_ptr<Score> score, unsigned int *level):GUI()
 {
 	this->window = window;
 	this->player = player;
 	this->score = score;
+	this->level = level;
 	PrepareLine();
 	SetPositions();
 }
@@ -54,10 +55,12 @@ void GUI::DrawInterface()
 	PrepareHP();
 	PrepareScore();
 	PrepareWeapon();
+	PrepareLevel();
 	window->draw(line);
 	window->draw(informations[Texts::HP]);
 	window->draw(informations[Texts::WEAPON]);
 	window->draw(informations[Texts::SCORE]);
+	window->draw(informations[Texts::LEVEL]);
 }
 
 void GUI::SetFontToInformations()
@@ -111,6 +114,14 @@ void GUI::PrepareLine()
 	this->line.setPosition(LINE_POSITION.x, LINE_POSITION.y*this->window->getSize().y);
 	this->line.setFillColor(sf::Color(128,128,128));
 	this->line.setSize(sf::Vector2f((float)this->window->getSize().x, 5));
+}
+
+void GUI::PrepareLevel()
+{
+	if (this->level != nullptr)
+	{
+		informations[Texts::LEVEL].setString(CONST_INFORMATION[Texts::LEVEL] + std::to_string(*(this->level)));
+	}
 }
 
 
