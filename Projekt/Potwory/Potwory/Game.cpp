@@ -178,6 +178,7 @@ void Game::GameLoop()
 		{
 			board->PrepareForNewLevel(objects, pickableObjects);
 			board->NextLevel(player, objects, pickableObjects, monsters);
+			clock.restart();
 		}
 	}
 }
