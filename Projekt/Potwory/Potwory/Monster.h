@@ -3,6 +3,7 @@
 #pragma once
 #include"stdafx.h"
 #include"Dynamic_Object.h"
+#include"Player.h"
 
 const sf::IntRect MONSTER_SPRITES_POSITION[DIRECTIONS][ANIMATION_FRAMES] = {
 	sf::IntRect({ 3,1,30,54 }),sf::IntRect({ 52,1,30,54 }),sf::IntRect({ 102,1,30,54 }),
@@ -34,9 +35,10 @@ public:
 	bool DoAction()override { return false; }//action for pickable (wearable)
 	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
 	bool DoAction(int &hp) override { return false; }
+	void Move(const float &frametime,const unsigned int move);
 //virtual
 	virtual void SetSprites(const sf::Texture &texture)override;
-	virtual void Decide(); //Monster AI
+	virtual void Decide(std::shared_ptr<Player> player,const std::vector<Object*> &objects,const float &frametime); //Monster AI
 private:
 //Fields
 	sf::Clock clock;

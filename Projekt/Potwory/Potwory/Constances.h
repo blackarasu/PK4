@@ -1,7 +1,7 @@
 #pragma once
 #include"stdafx.h"
 //files
-enum files{HEART,BLACKHEART,SWORD,CHARACTER,MONSTER,WALL};
+enum files { HEART, BLACKHEART, SWORD, CHARACTER, MONSTER, WALL };
 const std::vector<std::string> fileLocations = {
 	"..//sprites//heart.png",
 	"..//sprites//blackheart.png",
@@ -15,7 +15,7 @@ const std::vector<std::string> FONTS = { "..//Fonts//cour.ttf" };
 //Window
 const sf::VideoMode DEFAULT_SIZE_VIDEO = { 1024,768 };
 //others
-enum Direction:unsigned int{ RIGHT, DOWN, UP, LEFT };
+enum Direction:unsigned int{ RIGHT, DOWN, UP, LEFT, DIRECTION_LENGTH };
 const int OPPOSITE = -1;
 const int DEAD = 0; //no HP
 const unsigned int NO_SIZE = 0;
