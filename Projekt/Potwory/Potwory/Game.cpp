@@ -101,10 +101,10 @@ void Game::AddHeart(Heart * heart)
 
 void Game::GameLoop()
 {
-	clock.restart();
+	clock.restart();//right before game starting for the least diff
 	while (window->isOpen())
 	{
-		frametime = clock.restart().asSeconds();
+		frametime = clock.restart().asSeconds();//it should be first to get good AI decide
 		if (player->GetHP() <= 0)
 		{//endGame ->saveScore,ShowScores and waits for button to restart game with other random map
 			score->EndGameScreen(window, &event, ui->GetFont());
@@ -118,6 +118,8 @@ void Game::GameLoop()
 			player.reset();
 			board->GenerateLevel(player,objects,pickableObjects,monsters);
 			ui->setPlayer(player);
+			clock.restart();//restart game
+			frametime = clock.restart().asSeconds();//get newest frametime
 		}
 		while (window->pollEvent(event))
 		{
