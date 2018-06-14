@@ -24,6 +24,7 @@ public:
 	void SetRange(const float &range);
 	void SetAttackSpeed(const float &attackSpeed);
 //getters
+protected:
 	float GetDamage();
 	float *GetAddressDamage();//good for referance argument
 	float GetRange();
@@ -31,13 +32,16 @@ public:
 	float GetAttackSpeed();
 	float *GetAddressAttackSpeed();//good for referance argument
 //methods
+
 	virtual sf::FloatRect Attack() override;
 	bool DoAction()override { return false; }//action for pickable (wearable)
 	void DoAction(sf::Vector2f &valueToChange, const unsigned int lastAction, float frametime, sf::Vector2f speed)override {}
 	bool DoAction(int &hp) override { return false; }
+protected:
 	void Move(const float &frametime,const unsigned int move);
 //virtual
 	virtual void SetSprites(const sf::Texture &texture)override;
+public:
 	virtual void Decide(std::shared_ptr<Player> player,const std::vector<Object*> &objects,const float &frametime); //Monster AI
 private:
 //Fields
