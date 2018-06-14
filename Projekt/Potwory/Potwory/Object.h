@@ -8,7 +8,7 @@ class Object
 public:
 //Constructors/Destructors
 	Object();
-	~Object();
+	virtual ~Object();
 	Object(const float &x, const float &y); //x,y are coordinates from map (not pixel position)/ if you want set pixel position use constructor with 4 parameters
 	Object(const float &x, const float &y, const std::string &ID);
 	Object(const float &x, const float &y, const std::string &ID, const sf::Texture &texture);

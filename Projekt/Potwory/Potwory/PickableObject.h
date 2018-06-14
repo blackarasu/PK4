@@ -17,7 +17,7 @@ public:
 	Pickable(const std::string ID, sf::Vector2f* playerPosition);
 	Pickable(const float &x, const float &y, const std::string ID, const sf::Texture &texture);
 	Pickable(const std::string ID, const sf::Texture &texture, sf::Vector2f* playerPosition);
-	~Pickable();
+	virtual ~Pickable();
 //setters
 	void SetPlayerPosition(sf::Vector2f* playerPosition); //set address to playerPosition
 	void SetSprites(const sf::Texture &texture) override; //overrided method for SetSprites. It sets two sprites for NOT_PICKED and PICKED version;

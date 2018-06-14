@@ -45,9 +45,6 @@
     <ClInclude Include="Weapon.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Pliki nagłówkowe\ToDo</Filter>
-    </ClInclude>
     <ClInclude Include="Small_Monster.h">
       <Filter>Pliki nagłówkowe\ToDo</Filter>
     </ClInclude>
@@ -89,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="Score.h">
       <Filter>Pliki nagłówkowe\Done\Controlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Pliki nagłówkowe\Done\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

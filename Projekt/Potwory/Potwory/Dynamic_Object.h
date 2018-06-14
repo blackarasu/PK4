@@ -24,7 +24,7 @@ public:
 	Dynamic(const float & x, const float & y, const std::string & ID, const int &hp, const sf::Vector2f &speed);
 	Dynamic(const float &x, const float &y, const std::string &ID, const sf::Texture &texture);
 	Dynamic(const float &x, const float &y, const std::string &ID, const sf::Texture &texture, const int &hp, const sf::Vector2f &speed);
-	~Dynamic();
+	virtual ~Dynamic();
 //setters
 	virtual void SetSprites(const sf::Texture &texture)override; //Set 9 sprites from texture and it makes Rectangle from SPRITES_POSITION
 	void SetHP(const int &hp);

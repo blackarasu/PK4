@@ -7,7 +7,7 @@ Score::Score()
 {
 	this->multiplier = 0.75f;
 	this->actualScore = 0.0f;
-	this->namePattern=new std::regex(("[A-Za-z]+"));
+	this->namePattern=new std::regex(("[A-Za-z]+"));//used regex
 	FillScoreBoardWith0();
 	try 
 	{
