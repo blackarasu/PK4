@@ -87,10 +87,10 @@ sf::FloatRect Monster::Attack()//atakowanie troche podobne do playerAttack
 		//	attackRectangle.left += attackRectangle.width;
 		//	break;
 		//}
-		attackRectangle.height = 3 * this->range;//only for now
-		attackRectangle.width = 3 * this->range; //only for now
-		attackRectangle.top -= this->range;		 //only for now
-		attackRectangle.left -= this->range;	 //only for now
+		attackRectangle.height = 3 * this->range;//only for now 16x16 attack ie.
+		attackRectangle.width = 3 * this->range; //only for now	16x16 attack ie.
+		attackRectangle.top -= this->range;		 //only for now	16x16 attack ie.
+		attackRectangle.left -= this->range;	 //only for now	16x16 attack ie.
 		this->clock.restart();
 		return attackRectangle;
 	}
