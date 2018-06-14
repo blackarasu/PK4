@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
-  <Class Name="Game" Collapsed="true">
-    <Position X="17.5" Y="0.5" Width="1.5" />
+  <Class Name="Game">
+    <Position X="30.75" Y="3" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AEAUgAAAwEAAEAAAEQAIAAYAAQiABAIJIAACAAAAAAA=</HashCode>
       <FileName>Game.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Dynamic" Collapsed="true">
-    <Position X="2" Y="1.75" Width="2.25" />
+  <Class Name="Dynamic">
+    <Position X="2" Y="7" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAEBAAAAJAAAAEABAAQABBAgAIGAAQAKQIBAgQCAAAA=</HashCode>
       <FileName>Dynamic_Object.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Heart" Collapsed="true">
-    <Position X="6.5" Y="1.75" Width="2.25" />
+  <Class Name="Heart">
+    <Position X="6.5" Y="7" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAEAAAAAAQIAAAAAAAAAAAAICA=</HashCode>
       <FileName>Heart.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Object" Collapsed="true">
-    <Position X="6" Y="0.5" Width="3.25" />
+  <Class Name="Object">
+    <Position X="6" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AEAIIAAABQAAgAYgAAACgAAgAAAIAgAEYAAAQIAASAA=</HashCode>
       <FileName>Object.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Pickable" Collapsed="true">
-    <Position X="12.5" Y="1.75" Width="2.25" />
+  <Class Name="Pickable">
+    <Position X="12.5" Y="7" Width="2.25" />
     <NestedTypes>
       <Enum Name="Pickable::Picked" Collapsed="true">
         <TypeIdentifier>
@@ -42,106 +42,106 @@
       <FileName>PickableObject.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Player" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="2.25" />
+  <Class Name="Player">
+    <Position X="0.5" Y="13.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAIAIAAAAAAAAAQAAABA=</HashCode>
       <FileName>Player.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Sword" Collapsed="true">
-    <Position X="12.5" Y="3.25" Width="2.25" />
+  <Class Name="Sword">
+    <Position X="12.5" Y="13.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AIACAAiIAAgAggQAAAAAAAgAAAAIAYEAAAgABAAAAAA=</HashCode>
       <FileName>Sword.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Wall" Collapsed="true">
-    <Position X="9.5" Y="1.75" Width="2.25" />
+  <Class Name="Wall">
+    <Position X="9.5" Y="7" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAIAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Wall.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Monster" Collapsed="true">
-    <Position X="3.5" Y="3.25" Width="2.25" />
+  <Class Name="Monster">
+    <Position X="3.5" Y="13.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AIACAAiIAIgEgAAACAAAAAAgAIAIAIAAAggDABAAAAA=</HashCode>
       <FileName>Monster.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Board" Collapsed="true">
-    <Position X="15.75" Y="0.5" Width="1.5" />
+  <Class Name="Board">
+    <Position X="27.25" Y="3" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AIAABAAEAGAgAACAAAAAAAEBAAEAAAAAAAAACCgAAAA=</HashCode>
       <FileName>Board.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GUI" Collapsed="true">
-    <Position X="19.25" Y="0.5" Width="1.5" />
+  <Class Name="GUI">
+    <Position X="24" Y="3" Width="3" />
     <TypeIdentifier>
       <HashCode>AAMAAAgAEBAAAAAAAACIAAgEBBkEAgIJAAAAAAAAABg=</HashCode>
       <FileName>Interface.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Score" Collapsed="true">
-    <Position X="15.75" Y="1.5" Width="1.5" />
+  <Class Name="Score">
+    <Position X="20.5" Y="3" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAgACIVAAgAQgCAEAAAIgQAAAETUAADAgoQEhABQA=</HashCode>
       <FileName>Score.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="ToScore" Collapsed="true">
-    <Position X="15.75" Y="2.75" Width="1.5" />
+  <Struct Name="ToScore">
+    <Position X="13" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Score.h</FileName>
     </TypeIdentifier>
   </Struct>
-  <Enum Name="files" Collapsed="true">
-    <Position X="17.5" Y="4" Width="1.5" />
+  <Enum Name="files">
+    <Position X="16.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAgAAIA=</HashCode>
       <FileName>Constances.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Fonts" Collapsed="true">
-    <Position X="19.25" Y="4" Width="1.5" />
+  <Enum Name="Fonts">
+    <Position X="18.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Constances.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Direction" Collapsed="true">
-    <Position X="15.75" Y="4" Width="1.5" />
+  <Enum Name="Direction">
+    <Position X="15" Y="1.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAICACAgAAAAAAAAAAA=</HashCode>
       <FileName>Constances.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Monsters" Collapsed="true">
-    <Position X="17.5" Y="4.75" Width="1.5" />
+  <Enum Name="Monsters">
+    <Position X="16.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Constances.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Frame" Collapsed="true">
-    <Position X="15.75" Y="4.75" Width="1.5" />
+  <Enum Name="Frame">
+    <Position X="18.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Dynamic_Object.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Texts" Collapsed="true">
-    <Position X="15.75" Y="5.5" Width="1.5" />
+  <Enum Name="Texts">
+    <Position X="15" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAAAAACEAAAAgQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Position" Collapsed="true">
-    <Position X="19.25" Y="4.75" Width="1.5" />
+  <Enum Name="Position">
+    <Position X="18.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Interface.h</FileName>
